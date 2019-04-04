@@ -1,0 +1,308 @@
+body{
+    margin: 0;
+    font-family: calibri;
+    background-image:linear-gradient(rgba(0, 0, 0, 0.8),rgba(0,0,0,0.3)), url(../images/coins.jpg);
+    background-size:cover;
+    background-position: center;
+    line-height: 1.5;
+  
+}
+.home-bg{
+    background-color: #f5f5f6;
+}
+.signup-bg{
+    background-color: #f5f5f6;
+}
+@media only screen and (max-width: 300px){
+    .main-nav{
+        font-size:0.1em;
+        padding:0; 
+    }
+    .zone{
+        font-size:0.8em;
+    }
+}
+.zone {
+    color:#ffffff; 
+    font-size:2em;
+    border:1px solid #bbb;
+}
+.logo {
+    width: 41px;
+    height: 41px;
+    margin: .5em 0 .5em 1em;
+}
+.main-nav {
+    display: flex;
+    list-style: none;
+    font-size: .5em;
+    margin: 0;
+    text-align:center;
+}
+.push {
+  margin-left: auto;
+}
+li {
+    padding:10px;  
+}
+.push a {
+    color:gold;
+}
+a{
+    color: #f5f5f6;
+    text-decoration: none;
+}
+/*COVER*/
+.container{
+    display: flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-around;
+    height: 84vh;
+}
+
+.login-page{
+    width:1000px;
+    padding: 5% 0 0;
+    margin: auto;
+
+}
+.form{
+    position:relative;
+    z-index: 1;
+    background-color:rgba(68, 50, 78, 0.5);
+    max-width: 360px;
+    margin: 0 auto 100px;
+    padding: 45px;
+    text-align: center;
+    float:right;
+}
+.forms{
+    position:relative;
+    z-index: 1;
+    background-color:rgba(68, 50, 78, 0.5);
+    max-width: 360px;
+    margin: 0 auto 100px;
+    padding: 35px;
+    text-align: center;
+    float:center;
+   
+}
+.welcome{
+    position:relative;
+    z-index: 1;
+    max-width: 400px;
+    padding: 1em;
+    text-align: justify;
+    float:left;
+
+}
+.forms input{
+    font-family: "roboto", sans-serif;
+    outline: 1;
+    background-color: #f2f2f2;
+    width: 100%;
+    border:0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+.forms textarea{
+   font-family: "roboto", sans-serif;
+    outline: 1;
+    background-color: #f2f2f2;
+    width: 100%;
+    border:0;
+    margin: 0 0 15px;
+    padding: 40px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+ .forms button {
+    font-family: "roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background-color:purple;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+ }
+ .forms button:hover,.forms button:active{
+    background-color:rgb(158, 10, 216)
+ }
+ .forms .message{
+    margin:15px 0 0;
+    color: aliceblue;
+    font-size: 14px;
+ }
+ .forms .message a {
+    color:gold;
+    text-decoration: none;
+}
+.forms .register{
+    display: none;
+}
+.forms h4 {
+    margin:0;
+    padding: 0;
+    color:gold
+}
+.forms h6 {
+    line-height:0.1;
+}
+.form input{
+    font-family: "roboto", sans-serif;
+    outline: 1;
+    background-color: #f2f2f2;
+    width: 100%;
+    border:0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+.form textarea{
+   font-family: "roboto", sans-serif;
+    outline: 1;
+    background-color: #f2f2f2;
+    width: 100%;
+    border:0;
+    margin: 0 0 15px;
+    padding: 40px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+ .form button {
+    font-family: "roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background-color:purple;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+ }
+ .form button:hover,.form button:active{
+    background-color:rgb(158, 10, 216);
+ }
+ .form .message{
+    margin:15px 0 0;
+    color: aliceblue;
+    font-size: 14px;
+ }
+ .form .message a {
+    color:gold;
+    text-decoration: none;
+}
+.form .message a:hover {
+    color: white;
+}
+.form .register{
+    display: none;
+}
+.welcome h4{
+  display: block;
+  font-weight: bold;
+  font-family:'roboto';
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  color:gold;
+}
+.welcome h5{
+  display: block;
+  font-size:21px;
+  font-weight: 300;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  color: white;
+}
+
+hr.clearfix{
+  visibility: hidden;
+  clear: both;
+}
+/*FOOTER*/
+footer {
+    text-align: center;
+}
+.footer-nav {
+    display: flex;
+    list-style: none;
+    font-size: 0.4em;
+    margin:0;
+}
+.footer-nav a {
+    color:whitesmoke;   
+}
+.right {
+    margin-left: auto;
+}
+.left{
+    margin-right: auto;
+}
+
+.green{
+border-style: none;
+font-size: 4em;
+font-weight: bolder;
+color:gold;
+}
+.red{
+border-style: none;
+}
+.blue{
+border-style: none;  
+}
+#banka {
+    margin: .3em 0 0 .5em;    
+}
+#banka a {
+    color: gold;
+}
+.modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.1);
+    transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 1rem 1.5rem;
+    width: 24rem;
+    border-radius: 0.5rem;
+}
+.close-button {
+    float: right;
+    width: 1.5rem;
+    line-height: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    background-color: lightgray;
+}
+.close-button:hover {
+    background-color: darkgray;
+}
+.show-modal {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1.0);
+    transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
