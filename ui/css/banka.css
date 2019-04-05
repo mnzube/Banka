@@ -5,6 +5,7 @@ body{
     background-size:cover;
     background-position: center;
     line-height: 1.5;
+    overflow:hidden;
   
 }
 .home-bg{
@@ -58,7 +59,7 @@ a{
     flex-wrap:wrap;
     align-items:center;
     justify-content:space-around;
-    height: 84vh;
+    height: 85vh;
 }
 
 .login-page{
