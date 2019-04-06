@@ -1,0 +1,30 @@
+{
+  "name": "banka",
+  "version": "1.0.0",
+  "description": "The light weight core banking application that powers banking operations",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --require @babel/register ./server/index.js",
+    "dev": "nodemon --require @babel/register ./server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mnzube/Banka.git"
+  },
+  "author": "Michael Nzube",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mnzube/Banka/issues"
+  },
+  "homepage": "https://github.com/mnzube/Banka#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "nodemon": "^1.18.10"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/register": "^7.4.0"
+  }
+}
