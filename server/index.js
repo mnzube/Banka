@@ -1,5 +1,6 @@
 import express from 'express';
-import users from "./routes/users"
+import users from "./routes/users";
+import accounts from "./routes/accounts";
 const app = express();
 
 app.use(express.urlencoded({extended: true}));
@@ -10,6 +11,9 @@ app.get('/', (req, res) => {
 })
 
 app.use("/api/v1",users)
-const port = process.env.PORT  || 3000;
+app.use("/api/v1",accounts)
+
+
+const port = process.env.PORT||3000;
 
 app.listen(port, () => console.log(`Listening on port ${port}`) );
