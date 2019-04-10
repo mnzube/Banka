@@ -1,3 +1,4 @@
+import uuid from "uuid";
 class Account {
     constructor() {
       this.accounts = [];
@@ -5,7 +6,7 @@ class Account {
     //creates an account
     create(data) {
       const newAccount = {
-        accountNumber: data.accountNumber,
+        accountNumber: uuid.v4(),
         firstName: data.firstName,
         lastName: data.lastName,
         email: data.email,
