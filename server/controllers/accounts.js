@@ -21,5 +21,14 @@ const Account = {
       }
       const data = AccountModel.create(req.body);
       return res.status(201).json({status:201,'message':'Account created succesfully',data});
-    }}
+    },
+
+    getOne(req, res) {
+      const account = AccountModel.findOne(req.params.id);
+      if (!account) {
+        return res.status(404).send({status:404,'message': 'account not found'});
+      }
+      return res.status(200).send({status:200,account});
+    }
+  }
     export default Account ;
