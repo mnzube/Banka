@@ -22,13 +22,18 @@ const Account = {
       const data = AccountModel.create(req.body);
       return res.status(201).json({status:201,'message':'Account created succesfully',data});
     },
-
+    //get one account
     getOne(req, res) {
       const account = AccountModel.findOne(req.params.id);
       if (!account) {
         return res.status(404).send({status:404,'message': 'account not found'});
       }
       return res.status(200).send({status:200,account});
-    }
+    },
+  //@get all accounts 
+  getAll(req, res) {
+    const accounts = AccountModel.findAll();
+    return res.status(200).send({status:200,accounts});
   }
+}
     export default Account ;

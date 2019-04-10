@@ -20,5 +20,10 @@ class Account {
   //@finds one account
   findOne(accountNumber) {
     return this.accounts.find(account => account.accountNumber === accountNumber);
-  }}
+  }
+   //@finds all accounts
+   findAll() {
+    return this.accounts;
+  }
+}
   export default new Account() ;
