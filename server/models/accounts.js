@@ -17,5 +17,8 @@ class Account {
       this.accounts.push(newAccount);
       return newAccount
     }
-  }
+  //@finds one account
+  findOne(accountNumber) {
+    return this.accounts.find(account => account.accountNumber === accountNumber);
+  }}
   export default new Account() ;
