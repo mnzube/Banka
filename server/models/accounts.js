@@ -40,6 +40,12 @@ class Account {
     const deleted = this.accounts.splice(index, 1);
     return deleted;
   }
+  updateAccountBalance(data){
+    const account=this.findOne(data.accountNumber);
+    const index=this.accounts.indexOf(account);
+    const update=this.accounts[index].balance=data.balance;
+    return update;
+  }
 }
 
   export default new Account() ;
