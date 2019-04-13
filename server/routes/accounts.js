@@ -14,5 +14,6 @@ app.delete("/accounts/:id",auth.checkAuth,Account.delete);
 
 //@transaction
 app.post("/transaction/:accountNumber/debit",auth.checkAuth,Transaction.debit);
+app.post("/transaction/:accountNumber/credit",auth.checkAuth,Transaction.credit);
 
 export default app;
