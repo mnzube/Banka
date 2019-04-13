@@ -7,8 +7,9 @@ class User{
         this.users.push(data);
         return data;
     }
-    find(){
-       return this.users;
+    find(data){
+        const user=this.users.find(user=>user.email===data);
+        return user;
     }
     findById(id){
         const user=this.users.find(user=>user.id===id);

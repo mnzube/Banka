@@ -91,7 +91,7 @@ if(user){
         else{
             const payload = {
                 id:user.id,
-                email: user.email
+                type:user.type
             };
             jwt.sign(payload,keys.secret,
                 {
