@@ -12,7 +12,8 @@ app.get("/accounts",auth.checkAuth,Account.getAll);
 app.patch("/accounts/:id",auth.checkAuth,Account.update);
 app.delete("/accounts/:id",auth.checkAuth,Account.delete);
 
-//@transaction
+//transaction
 app.post("/transaction/:accountNumber/debit",auth.checkAuth,Transaction.debit);
+app.post("/transaction/:accountNumber/credit",auth.checkAuth,Transaction.credit);
 
 export default app;

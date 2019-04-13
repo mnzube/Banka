@@ -23,11 +23,12 @@
     "nodemon": "^1.18.10",
     "uuid": "^3.3.2",
     "bcryptjs": "^2.4.3",
-    "jsonwebtoken": "^8.5.0"
-  },
-  "devDependencies": {
+    "jsonwebtoken": "^8.5.0",
     "@babel/core": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
     "@babel/register": "^7.4.0"
+  },
+  "devDependencies": {
+    
   }
 }

@@ -10,11 +10,11 @@ exports.signup=(req,res)=>{
     //validation
     if(!req.body.email || !req.body.firstname || !req.body.lastname || 
         !req.body.password || !req.body.type){
-        return res.status(400).json({error:"all fields are required"});
+        return res.status(400).json({status:400,error:"all fields are required"});
     }
     else if(req.body.email==="" || req.body.firstname==="" ||
        req.body.lastname==="" || req.body.password==="" || req.body.type===""){
-            return res.status(400).json({error:"all fields are requiredsss"});
+            return res.status(400).json({status:400,error:"all fields are required"});
     }else{
         //initial newUser
         const newUser={
@@ -52,7 +52,7 @@ exports.signup=(req,res)=>{
             }})
             });
     }else{
-        return res.status(400).json({error:"an error occured try again"});
+        return res.status(400).json({status:400,error:"an error occured try again"});
     }
     }
 }
@@ -61,12 +61,13 @@ exports.signin=(req,res)=>{
     //validation
     if(!req.body.email || !req.body.password){
         return res.status(400).json({
+            status:400,
             error:"all fields are required"
         });
     }
     if(req.body.email==="" ||req.body.password===""){
         return res.status(400).json(
-            {error:"all fields are required"
+            {status:400,error:"all fields are required"
         });
     }
 //
@@ -77,13 +78,13 @@ if(user){
 
         if(error){
             return res.status(500).json(
-                {
-                    error: 'testing error',
+                {   status:500,
+                    error: 'authentication error',
                 });
         }
         if(!matches){
           return res.status(400).json(
-              {
+              { status:400,
               error:"passwords don't match."
             });
         }
