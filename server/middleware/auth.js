@@ -12,7 +12,10 @@ const auth={
              return res.status(401).json({status:401,error:"Your are not logged in."});
          }
          if(decode){
-         req.user=decode;
+         req.user={
+             id:decode.id,
+             type:decode.type
+         };
          next();
          }else{
              return res.status(401).json({error:"Your are not logged in."});

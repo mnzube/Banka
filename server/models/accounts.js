@@ -4,15 +4,15 @@ class Account {
       this.accounts = [];
     }
     //creates an account
-    create(data) {
+    create(data,userId) {
       const newAccount = {
-        accountNumber: uuid.v4(),
-        firstName: data.firstname,
-        lastName: data.lastname,
-        email: data.email,
-        accountType:data.accountType,
-        openingBalance:data.openingBalance,
-        status: 'dormant'
+        id:uuid.v4(),
+        accountNumber: new Date().getFullYear()+'-'+Math.random(),
+        owner:userId,
+        type:data.type,
+        balance:data.balance,
+        status: 'dormant',
+        createdOn:new Date()
       
       };
       this.accounts.push(newAccount);

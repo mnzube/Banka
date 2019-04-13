@@ -9,12 +9,12 @@ import keys from "../config/keys";
 exports.signup=(req,res)=>{
     //validation
     if(!req.body.email || !req.body.firstname || !req.body.lastname || 
-        !req.body.password || !req.body.accountType || !req.body.isAdmin){
+        !req.body.password || !req.body.type){
         return res.status(400).json({error:"all fields are required"});
     }
     else if(req.body.email==="" || req.body.firstname==="" ||
-       req.body.lastname==="" || req.body.password==="" || req.body.accountType==="" || req.body.isAdmin===""){
-            return res.status(400).json({error:"all fields are required"});
+       req.body.lastname==="" || req.body.password==="" || req.body.type===""){
+            return res.status(400).json({error:"all fields are requiredsss"});
     }else{
         //initial newUser
         const newUser={
@@ -23,13 +23,14 @@ exports.signup=(req,res)=>{
         firstname:req.body.firstname,
         lastname:req.body.lastname,
         password:bcrypt.hashSync(req.body.password),
-        accountType:req.body.accountType,
-        isAdmin:req.body.isAdmin
+        type:req.body.type,
+        isAdmin:(req.body.isAdmin ? req.body.isAdmin : false)
     }
     const save=User.create(newUser);
     if(save){
         const payload = {
             id:save.id,
+            type:save.type
         };
         jwt.sign(payload,keys.secret,
             {
@@ -46,7 +47,7 @@ exports.signup=(req,res)=>{
                 email: save.email,
                 firstname: save.firstname,
                 lastname: save.lastname,
-                accountType: save.accountType,
+                type: save.type,
                 isAdmin: save.isAdmin
             }})
             });

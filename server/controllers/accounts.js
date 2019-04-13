@@ -3,25 +3,20 @@ import AccountModel from "../models/accounts"
 const Account = {
     //@creates an account
     create(req, res) {
-      if (!req.body.accountNumber &&
-         !req.body.firstName && 
-         !req.body.lastName &&
-         !req.body.email &&
-         !req.body.accountType &&
-         !req.body.openingBalance &&
+      if (
+         !req.body.type &&
+         !req.body.balance &&
          !req.body.status ) {
         return res.status(400).send({'message': 'All fields are required'});
       }
-      if(req.body.accountNumber ==="" ||
-         req.body.firstName ==="" ||
-         req.body.lastName ===""  ||
-         req.body.email === "" || 
-         req.body.accountType === "" ||
-         req.body.openingBalance === "" ||
+      if(req.body.type === "" ||
          req.body.status === "" ){
         return res.status(400).send({'message': 'All fields are required'});
       }
-      const data = AccountModel.create(req.body);
+      if(!Number.parseFloat(req.body.balance) || typeof(req.body.balance)==='string'){
+        return res.status(400).send({'message': 'balance must be a number'});
+      }
+      const data = AccountModel.create(req.body,req.user.id);
       return res.status(201).json({
         status:201,
         'message':'Account created succesfully',
