@@ -1,0 +1,36 @@
+{
+    "signup":{
+        "firstname":"michael",
+        "lastname":"nzube",
+        "email":"nzube@gmail.com",
+        "password":"123456",
+        "type":"staff",
+        "isAdmin":true
+    },
+    "signup1":{
+        "firstname":"michael",
+        "lastname":"nzube",
+        "email":"nzube@gmail.com",
+        "password":"123456",
+        "type":"client",
+        "isAdmin":false
+    },
+    "signupValidation":{
+        "firstname":"michael",
+        "lastname":"nzube",
+        "email":"",
+        "password":""
+    },
+    "login":{
+        "email":"nzube@gmail.com",
+        "password":"123456"
+    },
+    "passwordError":{
+        "email":"nzube@gmail.com",
+        "password":"yesdsld"
+    },
+    "loginError":{
+        "email":"som@gmail.com",
+        "password":"123456"
+    }
+}

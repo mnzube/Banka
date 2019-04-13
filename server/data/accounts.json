@@ -1,0 +1,12 @@
+{
+    "accounts":{
+        "balance":1000,
+        "type":"saving"
+    },
+    "accountValidation":{
+        "balance":"1000"
+    },
+    "accountValidation1":{
+        "balance":100
+    }
+}
