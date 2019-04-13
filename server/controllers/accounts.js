@@ -57,6 +57,15 @@ const Account = {
       const activate='active';
       const updateAccount = AccountModel.update(req.params.id,activate);
       return res.status(200).send({message:`account is ${activate}`,updateAccount});
-   }
+   },
+   //@deletes an account
+  delete(req, res) {
+    const account = AccountModel.findOne(req.params.id);
+    if (!account) {
+      return res.status(404).send({'message': 'Account not found'});
+    }
+    const ref = AccountModel.delete(req.params.id);
+    return res.status(200).json({status:200,message:'account deleted',data:ref});
   }
+}
   export default Account ;

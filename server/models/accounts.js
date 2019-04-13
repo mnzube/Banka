@@ -33,6 +33,13 @@ class Account {
      this.accounts[index].status= data;
      return this.accounts[index];
   }
+  //@deletes an account
+  delete(id) {
+    const account = this.findOne(id);
+    const index = this.accounts.indexOf(account);
+    const deleted = this.accounts.splice(index, 1);
+    return deleted;
+  }
 }
 
   export default new Account() ;
