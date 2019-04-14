@@ -5,8 +5,7 @@ const Account = {
     create(req, res) {
       if (
          !req.body.type &&
-         !req.body.balance &&
-         !req.body.status ) {
+         !req.body.balance) {
         return res.status(400).send({'message': 'All fields are required'});
       }
       if(req.body.type === "" ||

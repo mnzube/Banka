@@ -9,12 +9,10 @@ import keys from "../config/keys";
 exports.signup=(req,res)=>{
     //validation
     if(!req.body.email || !req.body.firstname || !req.body.lastname || 
-        !req.body.password || !req.body.type){
+        !req.body.password || !req.body.type || req.body.email===""
+        || req.body.password==="" || req.body.lastname==="" || req.body.firstname===""
+        || req.body.type===""){
         return res.status(400).json({status:400,error:"all fields are required"});
-    }
-    else if(req.body.email==="" || req.body.firstname==="" ||
-       req.body.lastname==="" || req.body.password==="" || req.body.type===""){
-            return res.status(400).json({status:400,error:"all fields are required"});
     }else{
         //initial newUser
         const newUser={
@@ -59,15 +57,10 @@ exports.signup=(req,res)=>{
 //signin
 exports.signin=(req,res)=>{
     //validation
-    if(!req.body.email || !req.body.password){
+    if(!req.body.email || !req.body.password || req.body.email==="" || req.body.password===""){
         return res.status(400).json({
             status:400,
             error:"all fields are required"
-        });
-    }
-    if(req.body.email==="" ||req.body.password===""){
-        return res.status(400).json(
-            {status:400,error:"all fields are required"
         });
     }
 //
@@ -100,7 +93,7 @@ if(user){
                     console.log(err);
                 }
                return res.status(200).json({
-                   status:201,
+                   status:200,
                    token:`${token}`,
                    data:{
                       message: 'User sucessfuly signed in'
