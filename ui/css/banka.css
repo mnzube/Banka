@@ -72,7 +72,7 @@ a{
     background-color:rgba(68, 50, 78, 0.5);
     max-width: 360px;
     margin: 0 auto 100px;
-    padding: 45px;
+    padding: 35px;
     text-align: center;
     float:right;
 }
@@ -82,7 +82,7 @@ a{
     background-color:rgba(68, 50, 78, 0.5);
     max-width: 360px;
     margin: 0 auto 100px;
-    padding: 35px;
+    padding: 30px;
     text-align: center;
     float:center;
    
@@ -97,7 +97,7 @@ a{
 
 }
 .forms input{
-    font-family: "roboto", sans-serif;
+    font-family: "Roboto", sans-serif;
     outline: 1;
     background-color: #f2f2f2;
     width: 100%;
@@ -152,6 +152,7 @@ a{
 }
 .forms h6 {
     line-height:0.1;
+    margin:20px;
 }
 .form input{
     font-family: "roboto", sans-serif;
@@ -204,6 +205,9 @@ a{
 }
 .form .register{
     display: none;
+}
+.form h5 {
+    margin:30px;
 }
 .welcome h4 a{
   display: block;
