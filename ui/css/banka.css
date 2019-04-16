@@ -5,14 +5,7 @@ body{
     background-size:cover;
     background-position: center;
     line-height: 1.5;
-    overflow:hidden;
-  
-}
-.home-bg{
-    background-color: #f5f5f6;
-}
-.signup-bg{
-    background-color: #f5f5f6;
+    /* overflow:hidden; */
 }
 .btnChange{
     background: none!important;
@@ -62,14 +55,15 @@ a{
     display: flex;
     flex-wrap:wrap;
     align-items:center;
-    justify-content:space-around;
-    height: 85vh;
+    justify-content:center;
+    height: 94vh;
 }
 
 .login-page{
     width:1000px;
     padding: 5% 0 0;
     margin: auto;
+    
 
 }
 .form{
@@ -211,7 +205,7 @@ a{
 .form .register{
     display: none;
 }
-.welcome h4{
+.welcome h4 a{
   display: block;
   font-weight: bold;
   font-family:'roboto';
@@ -230,7 +224,7 @@ a{
 }
 table {
    float: top;
-   padding-bottom: 75%;
+   padding-bottom: 45%;
    width: 100%;
 }
 th, td {
@@ -245,6 +239,9 @@ td {
 }
 /* tr:hover {background-color: rgba(120, 64, 150, 0.5);} */
 .header:hover{background-color: rgba(120, 64, 150, 0.5);}
+.header {
+    cursor: pointer;
+}
 hr.clearfix{
   visibility: hidden;
   clear: both;
