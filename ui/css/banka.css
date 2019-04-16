@@ -53,18 +53,11 @@ a{
 /*COVER*/
 .container{
     display: flex;
+    /* flex-direction:row; */
     flex-wrap:wrap;
     align-items:center;
     justify-content:center;
     height: 94vh;
-}
-
-.login-page{
-    width:1000px;
-    padding: 5% 0 0;
-    margin: auto;
-    
-
 }
 .form{
     position:relative;
@@ -74,7 +67,7 @@ a{
     margin: 0 auto 100px;
     padding: 35px;
     text-align: center;
-    float:right;
+    float:right;    
 }
 .forms{
     position:relative;
@@ -85,7 +78,6 @@ a{
     padding: 30px;
     text-align: center;
     float:center;
-   
 }
 .welcome{
     position:relative;
@@ -94,7 +86,8 @@ a{
     padding: 1em;
     text-align: justify;
     float:left;
-
+    padding-bottom:220px;
+    margin-left:20px;
 }
 .forms input{
     font-family: "Roboto", sans-serif;
@@ -108,7 +101,7 @@ a{
     font-size: 14px;
 }
 .forms textarea{
-   font-family: "roboto", sans-serif;
+   font-family: "Roboto", sans-serif;
     outline: 1;
     background-color: #f2f2f2;
     width: 100%;
@@ -155,7 +148,7 @@ a{
     margin:20px;
 }
 .form input{
-    font-family: "roboto", sans-serif;
+    font-family: "Roboto", sans-serif;
     outline: 1;
     background-color: #f2f2f2;
     width: 100%;
@@ -166,7 +159,7 @@ a{
     font-size: 14px;
 }
 .form textarea{
-   font-family: "roboto", sans-serif;
+   font-family: "Roboto", sans-serif;
     outline: 1;
     background-color: #f2f2f2;
     width: 100%;
@@ -177,7 +170,7 @@ a{
     font-size: 14px;
 }
  .form button {
-    font-family: "roboto", sans-serif;
+    font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     outline: 0;
     background-color:purple;
@@ -209,6 +202,144 @@ a{
 .form h5 {
     margin:30px;
 }
+.formz{
+    position:relative;
+    z-index: 1;
+    background-color:rgba(68, 50, 78, 0.5);
+    max-width: 360px;
+    margin: 0 auto 100px;
+    padding: 30px;
+    text-align: center;
+    float:left;  
+}
+
+.formz input{
+    font-family: "Roboto", sans-serif;
+    outline: 1;
+    background-color: #f2f2f2;
+    width: 100%;
+    border:0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+.formz textarea{
+   font-family: "roboto", sans-serif;
+    outline: 1;
+    background-color: #f2f2f2;
+    width: 100%;
+    border:0;
+    margin: 0 0 15px;
+    padding: 40px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+ .formz button {
+    font-family: "Roboto", calibri;
+    text-transform: uppercase;
+    outline: 0;
+    background-color:purple;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+ }
+ .formz button:hover,.forms button:active{
+    background-color:rgb(158, 10, 216)
+ }
+ .formz .message{
+    margin:15px 0 0;
+    color: aliceblue;
+    font-size: 14px;
+ }
+ .formz .message a {
+    color:gold;
+    text-decoration: none;
+}
+.formz .register{
+    display: none;
+}
+.formz h4 {
+    margin:0;
+    padding: 0;
+    color:gold
+}
+.formz h6 {
+    line-height:0.1;
+    margin:20px;
+}
+.formy{
+    position:relative;
+    z-index: 1;
+    background-color:rgba(68, 50, 78, 0.5);
+    max-width: 360px;
+    margin: 0 auto 100px;
+    padding: 30px;
+    text-align: center;
+    float:right;  
+}
+
+.formy input{
+    font-family: "Roboto", sans-serif;
+    outline: 1;
+    background-color: #f2f2f2;
+    width: 100%;
+    border:0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+.formy textarea{
+   font-family: "roboto", sans-serif;
+    outline: 1;
+    background-color: #f2f2f2;
+    width: 100%;
+    border:0;
+    margin: 0 0 15px;
+    padding: 40px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+ .formy button {
+    font-family: "Roboto", calibri;
+    text-transform: uppercase;
+    outline: 0;
+    background-color:purple;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+ }
+ .formy button:hover,.forms button:active{
+    background-color:rgb(158, 10, 216)
+ }
+ .formy .message{
+    margin:15px 0 0;
+    color: aliceblue;
+    font-size: 14px;
+ }
+ .formy .message a {
+    color:gold;
+    text-decoration: none;
+}
+.formy .register{
+    display: none;
+}
+.formy h4 {
+    margin:0;
+    padding: 0;
+    color:gold
+}
+.formy h6 {
+    line-height:0.1;
+    margin:20px;
+}
 .welcome h4 a{
   display: block;
   font-weight: bold;
@@ -228,8 +359,8 @@ a{
 }
 table {
    float: top;
-   padding-bottom: 45%;
    width: 100%;
+   
 }
 th, td {
     padding: 15px;
@@ -240,6 +371,21 @@ th {
 }
 td {
     font-size:15px;
+}
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+  }
+fieldset p {
+    font-size: 20px;
+}
+ .container .nav{
+    width: 20%;
+    box-shadow: 0 1px 10px 0 #ccc;
+    height: 80vh;
+    font-size: 0.7em;
 }
 /* tr:hover {background-color: rgba(120, 64, 150, 0.5);} */
 .header:hover{background-color: rgba(120, 64, 150, 0.5);}
@@ -271,16 +417,16 @@ footer {
 }
 
 .green{
-border-style: none;
+border-style:none;
 font-size: 4em;
 font-weight: bolder;
 color:gold;
 }
 .red{
-border-style: none;
+border-style:none;
 }
 .blue{
-border-style: none;  
+border-style:none;  
 }
 #banka {
     margin: .3em 0 0 .5em;    
