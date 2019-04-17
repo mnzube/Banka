@@ -24,13 +24,3 @@ closeButton.addEventListener("click", toggleModal);
 closeToggle.addEventListener("click", adminToggle);
 window.addEventListener("click", windowOnClick)
 
-$(document).ready(function() {
-
-    $('#example tr').click(function() {
-        var href = $(this).find("a").attr("href");
-        if(href) {
-            window.location = href;
-        }
-    });
-
-});
