@@ -2,35 +2,35 @@ import uuid from "uuid";
 import User from "../models/users";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import dotenv from 'dotenv';
+import keys from "../config/keys";
 
-dotenv.config();
 
 
 exports.signup=(req,res)=>{
     //validation
-    if(!req.body.email || !req.body.firstName || !req.body.lastName || 
-        !req.body.password || req.body.email===""
-        || req.body.password==="" || req.body.lastName==="" ||
-         req.body.firstName==="")
-         {
+    if(!req.body.email || !req.body.firstname || !req.body.lastname || 
+        !req.body.password || !req.body.type || req.body.email===""
+        || req.body.password==="" || req.body.lastname==="" || req.body.firstname===""
+        || req.body.type===""){
         return res.status(400).json({status:400,error:"all fields are required"});
     }else{
         //initial newUser
         const newUser={
         id:uuid.v4(),
         email:req.body.email,
-        firstName:req.body.firstName,
-        lastName:req.body.lastName,
+        firstname:req.body.firstname,
+        lastname:req.body.lastname,
         password:bcrypt.hashSync(req.body.password),
+        type:req.body.type,
         isAdmin:(req.body.isAdmin ? req.body.isAdmin : false)
     }
     const save=User.create(newUser);
     if(save){
         const payload = {
             id:save.id,
+            type:save.type
         };
-        jwt.sign(payload,process.env.secret,
+        jwt.sign(payload,keys.secret,
             {
                 expiresIn:"24d"}, (err,token)=>{
             if (err){
@@ -45,6 +45,7 @@ exports.signup=(req,res)=>{
                 email: save.email,
                 firstname: save.firstname,
                 lastname: save.lastname,
+                type: save.type,
                 isAdmin: save.isAdmin
             }})
             });
@@ -83,9 +84,9 @@ if(user){
         else{
             const payload = {
                 id:user.id,
-
+                type:user.type
             };
-            jwt.sign(payload,process.env.secret,
+            jwt.sign(payload,keys.secret,
                 {
                     expiresIn:"24d"}, (err,token)=>{
                 if (err){
@@ -95,7 +96,7 @@ if(user){
                    status:200,
                    token:`${token}`,
                    data:{
-                      message: 'User sucessfully signed in'
+                      message: 'User sucessfuly signed in'
                     }
                 });
             })
