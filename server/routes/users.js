@@ -1,9 +1,11 @@
 import express from "express";
-const app=express.Router();
 import users from "../controllers/users";
+import validation from "../middleware/users";
+
+const app = express.Router();
 //signup
-app.post("/signup",users.signup);
+app.post("/auth/signup", validation.signUpValidation, users.signup);
 //signin
-app.post("/signin", users.signin);
+app.post("/auth/signin", validation.loginValidation, users.signin);
 
 export default app;
