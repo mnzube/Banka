@@ -360,16 +360,20 @@ a{
 }
 .main-content{
     display: flex;
-    width: 70%;
-    height:35vh;
-    padding-left:40%;
+    width: 80%;
+    height:62vh;
+    padding-left:28%;
 }
 table {
-   /* float:right; */
-   width: 90%;
+   display:flex;
+   float:right;
+   width: 95%;
    background-color: rgba(68, 50, 78, 0.5);
    overflow-x:auto;
    overflow-y:auto;  
+}
+.tabl{
+    
 }
 th, td {
     padding: 10px;
