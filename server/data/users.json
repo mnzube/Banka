@@ -1,23 +1,21 @@
 {
     "signup":{
-        "firstname":"michael",
-        "lastname":"nzube",
+        "firstName":"michael",
+        "lastName":"nzube",
         "email":"nzube@gmail.com",
         "password":"123456",
-        "type":"staff",
         "isAdmin":true
     },
     "signup1":{
-        "firstname":"michael",
-        "lastname":"nzube",
+        "firstName":"michael",
+        "lastName":"nzube",
         "email":"nzube@gmail.com",
         "password":"123456",
-        "type":"client",
         "isAdmin":false
     },
     "signupValidation":{
-        "firstname":"michael",
-        "lastname":"nzube",
+        "firstName":"michael",
+        "lastName":"nzube",
         "email":"",
         "password":""
     },
