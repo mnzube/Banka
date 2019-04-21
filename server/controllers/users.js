@@ -20,7 +20,7 @@ class UserController {
     pool.query(sql, [newUser.email, newUser.firstName, newUser.lastName,
       newUser.password, newUser.isAdmin, newUser.type])
       .then((user) => {
-        const save=user.rows[0];
+        const save = user.rows[0];
         if (save) {
           const payload = {
             id: save.id
@@ -46,56 +46,59 @@ class UserController {
             });
         }
       })
-      .catch((error) => {
-        return res.status(500).json({status:500, error});
-      });
+      .catch(error => res.status(500).json({ status: 500, error }));
   }
 
   //signin
   static signin(req, res) {
     //
-    const user = User.find(req.body.email);
-    if (user) {
-    //
-      bcrypt.compare(req.body.password, user.password, (error, matches) => {
-        if (error) {
-          return res.status(500).json(
-            {
-              status: 500,
-              error: "authentication error"
+    const sql = "SELECT * FROM users WHERE email=$1";
+    pool.query(sql, [req.body.email])
+      .then((users) => {
+        if (users.rows.length !== 0) {
+        //
+          const user = users.rows[0];
+          bcrypt.compare(req.body.password, user.password, (error, matches) => {
+            if (error) {
+              return res.status(500).json(
+                {
+                  status: 500,
+                  error: "authentication error"
+                }
+              );
             }
-          );
-        }
-        if (!matches) {
-          return res.status(400).json(
-            {
-              status: 400,
-              error: "passwords don't match."
+            if (!matches) {
+              return res.status(400).json(
+                {
+                  status: 400,
+                  error: "passwords don't match."
+                }
+              );
             }
-          );
-        }
-
-        const payload = {
-          id: user.id
-
-        };
-        jwt.sign(payload, process.env.secret,
-          { expiresIn: "24d" }, (err, token) => {
-            if (err) {
-              console.log(err);
-            }
-            return res.status(200).json({
-              status: 200,
-              token: `${token}`,
-              data: {
-                message: "User sucessfully signed in"
-              }
-            });
+            const payload = {
+              id: user.id
+            };
+            jwt.sign(payload, process.env.secret,
+              { expiresIn: "24d" }, (err, token) => {
+                if (err) {
+                  console.log(err);
+                }
+                return res.status(200).json({
+                  status: 200,
+                  token: `${token}`,
+                  data: {
+                    message: "User sucessfully signed in"
+                  }
+                });
+              });
           });
+        } else {
+          return res.status(400).json({ status:400, error: "authentication failed." });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
       });
-    } else {
-      return res.status(400).json({ error: "authentication failed." });
-    }
   }
 }
 
