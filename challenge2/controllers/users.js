@@ -1,7 +1,8 @@
+import uuid from "uuid";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
-import pool from "../config/database";
+import User from "../models/users";
 
 dotenv.config();
 
@@ -9,46 +10,40 @@ class UserController {
   static signup(req, res) {
     //initial newUser
     const newUser = {
+      id: uuid.v4(),
       email: req.body.email,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       password: bcrypt.hashSync(req.body.password),
-      isAdmin: (req.body.isAdmin ? req.body.isAdmin : false),
-      type: (req.body.type ? req.body.type : "client")
+      isAdmin: (req.body.isAdmin ? req.body.isAdmin : false)
     };
-    const sql = "INSERT INTO users(email,firstname,lastname,password,isadmin,type) VALUES($1,$2,$3,$4,$5,$6) returning *";
-    pool.query(sql, [newUser.email, newUser.firstName, newUser.lastName,
-      newUser.password, newUser.isAdmin, newUser.type])
-      .then((user) => {
-        const save=user.rows[0];
-        if (save) {
-          const payload = {
-            id: save.id
-          };
-          jwt.sign(payload, process.env.secret,
-            { expiresIn: "24d" }, (err, token) => {
-              if (err) {
-                console.log(err);
+    const save = User.create(newUser);
+    if (save) {
+      const payload = {
+        id: save.id
+      };
+      jwt.sign(payload, process.env.secret,
+        { expiresIn: "24d" }, (err, token) => {
+          if (err) {
+            console.log(err);
+          }
+          return res.status(201).json(
+            {
+              status: 201,
+              message: "user created successfully",
+              token: `${token}`,
+              data: {
+                email: save.email,
+                firstname: save.firstname,
+                lastname: save.lastname,
+                isAdmin: save.isAdmin
               }
-              return res.status(201).json(
-                {
-                  status: 201,
-                  message: "user created successfully",
-                  token: `${token}`,
-                  data: {
-                    email: save.email,
-                    firstname: save.firstname,
-                    lastname: save.lastname,
-                    isAdmin: save.isAdmin
-                  }
-                }
-              );
-            });
-        }
-      })
-      .catch((error) => {
-        return res.status(500).json({status:500, error});
-      });
+            }
+          );
+        });
+    } else {
+      return res.status(400).json({ status: 400, error: "an error occured try again" });
+    }
   }
 
   //signin
