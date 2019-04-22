@@ -8,7 +8,7 @@ const app = express.Router();
 
 //create an account
 app.post("/accounts",  auth.checkAuth, validation.accountValidation, Account.create);
-app.get("/accounts/:id", auth.checkAuth, Account.getOne);
+app.get("/accounts/:accountNumber", auth.checkAuth, checkAccount,Account.getOne);
 app.get("/accounts", auth.checkAuth, Account.getAll);
 app.patch("/accounts/:accountNumber", auth.checkAuth, checkAccount,Account.update);
 app.delete("/accounts/:accountNumber", auth.checkAuth, Account.delete);
