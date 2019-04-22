@@ -11,7 +11,7 @@ app.post("/accounts",  auth.checkAuth, validation.accountValidation, Account.cre
 app.get("/accounts/:accountNumber", auth.checkAuth, checkAccount,Account.getOne);
 app.get("/accounts", auth.checkAuth, Account.getAll);
 app.patch("/accounts/:accountNumber", auth.checkAuth, checkAccount,Account.update);
-app.delete("/accounts/:accountNumber", auth.checkAuth, Account.delete);
+app.delete("/accounts/:accountNumber", auth.checkAuth,checkAccount, Account.delete);
 
 
 export default app;
