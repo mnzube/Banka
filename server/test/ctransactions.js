@@ -49,68 +49,67 @@ describe("Transaction", () => {
         done();
       });
   });
-  //it("should return status code of 400 with account balance is low", (done) => {
-  //chai.request(app)
-  //.post(`/api/v1/transaction/${accountNumber}/debit`)
-  //.set("Content-Type", "application/json")
-  //.set("Authorization", token)
-  //.send(debit)
-  //.end((error, res) => {
-  //if (error) {
-  //done(error);
-  //}
-  //res.should.have.status(400);
-  //res.body.should.have.property("status");
-  //res.body.should.have.property("error");
-  //done();
-  //});
-  //});
-  //it("should let user debit", (done) => {
-  //chai.request(app)
-  //.post(`/api/v1/transaction/${accountNumber}/debit`)
-  //.set("Content-Type", "application/json")
-  //.set("Authorization", token)
-  //.send({ amount: 500 })
-  //.end((error, res) => {
-  //if (error) {
-  //done(error);
-  //}
-  //res.should.have.status(201);
-  //res.body.should.have.property("status");
-  //res.body.should.have.property("message");
-  //done();
-  //});
-  //});
-  //it("should return status code of 404 with account number not available", (done) => {
-  //chai.request(app)
-  //.post("/api/v1/transaction/4564534/debit")
-  //.set("Content-Type", "application/json")
-  //.set("Authorization", token)
-  //.send(debit)
-  //.end((error, res) => {
-  //if (error) {
-  //done(error);
-  //}
-  //res.should.have.status(404);
-  //res.body.should.have.property("status");
-  //res.body.should.have.property("error");
-  //done();
-  //});
-  //});
-  //it("should return status code of 401 with user not available", (done) => {
-  //chai.request(app)
-  //.post("/api/v1/transaction/4564534/debit")
-  //.set("Content-Type", "application/json")
-  //.send(debit)
-  //.end((error, res) => {
-  //if (error) {
-  //done(error);
-  //}
-  //res.should.have.status(401);
-  //res.body.should.have.property("error");
-  //done();
-  //});
-  //});
+  it("should return status code of 400 with account balance is low", (done) => {
+    chai.request(app)
+      .post(`/api/v1/transaction/${accountNumber}/debit`)
+      .set("Content-Type", "application/json")
+      .set("Authorization", token)
+      .send(debit)
+      .end((error, res) => {
+        if (error) {
+          done(error);
+        }
+        res.should.have.status(400);
+        res.body.should.have.property("status");
+        res.body.should.have.property("message");
+        done();
+      });
+  });
+  it("should let user debit", (done) => {
+    chai.request(app)
+      .post(`/api/v1/transaction/${accountNumber}/debit`)
+      .set("Content-Type", "application/json")
+      .set("Authorization", token)
+      .send({ amount: 500 })
+      .end((error, res) => {
+        if (error) {
+          done(error);
+        }
+        res.should.have.status(201);
+        res.body.should.have.property("status");
+        res.body.should.have.property("message");
+        done();
+      });
+  });
+  it("should return status code of 404 with account number not available", (done) => {
+    chai.request(app)
+      .post("/api/v1/transaction/4564534/debit")
+      .set("Content-Type", "application/json")
+      .set("Authorization", token)
+      .send(debit)
+      .end((error, res) => {
+        if (error) {
+          done(error);
+        }
+        res.should.have.status(404);
+        res.body.should.have.property("status");
+        done();
+      });
+  });
+  it("should return status code of 401 with user not available", (done) => {
+    chai.request(app)
+      .post("/api/v1/transaction/4564534/debit")
+      .set("Content-Type", "application/json")
+      .send(debit)
+      .end((error, res) => {
+        if (error) {
+          done(error);
+        }
+        res.should.have.status(401);
+        res.body.should.have.property("error");
+        done();
+      });
+  });
   it("should create user and return status of 201", (done) => {
     chai.request(app)
       .post("/api/v1/auth/signup")
@@ -124,22 +123,21 @@ describe("Transaction", () => {
         done();
       });
   });
-  //it("should respond with unauthorized access and status 0f 400", (done) => {
-  //chai.request(app)
-  //.post(`/api/v1/transaction/${accountNumber}/debit`)
-  //.set("Content-Type", "application/json")
-  //.set("Authorization", token2)
-  //.send({ amount: 500 })
-  //.end((error, res) => {
-  //if (error) {
-  //done(error);
-  //}
-  //res.should.have.status(400);
-  //res.body.should.have.property("status");
-  //res.body.should.have.property("error");
-  //done();
-  //});
-  //});
+  it("should respond with unauthorized access and status 0f 400", (done) => {
+  chai.request(app)
+  .post(`/api/v1/transaction/${accountNumber}/debit`)
+  .set("Content-Type", "application/json")
+  .set("Authorization", token2)
+  .send({ amount: 500 })
+  .end((error, res) => {
+  if (error) {
+  done(error);
+  }
+  res.should.have.status(409);
+  res.body.should.have.property("status");
+  done();
+  });
+  });
   //credit test
   it("should return status code of 404 on credit", (done) => {
     chai.request(app)
@@ -205,19 +203,18 @@ describe("Transaction", () => {
         done();
       });
   });
-//it("should bring validation error and status 0f 400 on debit transaction", (done) => {
-//chai.request(app)
-//.post(`/api/v1/transaction/${accountNumber}/debit`)
-//.set("Content-Type", "application/json")
-//.set("Authorization", token)
-//.send({ amount: "500" })
-//.end((error, res) => {
-//if (error) {
-//done(error);
-//}
-//res.should.have.status(400);
-//res.body.should.have.property("message");
-//done();
-//});
-//});
+  it("should bring validation error and status 0f 400 on debit transaction", (done) => {
+    chai.request(app)
+      .post(`/api/v1/transaction/${accountNumber}/debit`)
+      .set("Content-Type", "application/json")
+      .set("Authorization", token)
+      .send({ amount: "500" })
+      .end((error, res) => {
+        if (error) {
+          done(error);
+        }
+        res.should.have.status(400);
+        done();
+      });
+  });
 });

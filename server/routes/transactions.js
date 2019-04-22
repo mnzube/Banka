@@ -9,7 +9,7 @@ const app = express.Router();
 //transaction
 app.post("/:accountNumber/debit", auth.checkAuth, checkType,
 checkAccount,Transaction.debit);
-app.post("/:accountNumber/credit", auth.checkAuth, checkType ,
+app.post("/:accountNumber/credit", auth.checkAuth, checkType,
 checkAccount,Transaction.credit);
 
 export default app;
