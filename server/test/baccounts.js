@@ -144,37 +144,37 @@ describe("Account", () => {
   //       done();
   //     });
   // });
-  // //update
-  // it("should return status 0f 200 when updating account", (done) => {
-  //   chai.request(app)
-  //     .patch(`/api/v1/accounts/${accountNumber}`)
-  //     .set("Content-Type", "application/json")
-  //     .set("Authorization", token)
-  //     .end((error, res) => {
-  //       if (error) {
-  //         done(error);
-  //       }
-  //       res.should.have.status(200);
-  //       res.body.should.have.property("message");
-  //       res.body.should.have.property("updateAccount");
-  //       done();
-  //     });
-  // });
+  //update
+  it("should return status 0f 200 when updating account", (done) => {
+    chai.request(app)
+      .patch(`/api/v1/accounts/${accountNumber}`)
+      .set("Content-Type", "application/json")
+      .set("Authorization", token)
+      .end((error, res) => {
+        if (error) {
+          done(error);
+        }
+        res.should.have.status(200);
+        res.body.should.have.property("message");
+        res.body.should.have.property("account");
+        done();
+      });
+  });
   // //
-  // it("should return status 0f 404 when updating an account fails", (done) => {
-  //   chai.request(app)
-  //     .patch("/api/v1/accounts/548674")
-  //     .set("Content-Type", "application/json")
-  //     .set("Authorization", token)
-  //     .end((error, res) => {
-  //       if (error) {
-  //         done(error);
-  //       }
-  //       res.should.have.status(404);
-  //       res.body.should.have.property("message");
-  //       done();
-  //     });
-  // });
+  it("should return status 0f 404 when account not found", (done) => {
+    chai.request(app)
+      .patch("/api/v1/accounts/548674")
+      .set("Content-Type", "application/json")
+      .set("Authorization", token)
+      .end((error, res) => {
+        if (error) {
+          done(error);
+        }
+        res.should.have.status(404);
+        res.body.should.have.property("message");
+        done();
+      });
+  });
   // //
   // it("should return status 0f 200 when deleting an account", (done) => {
   //   chai.request(app)
