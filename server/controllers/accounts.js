@@ -31,7 +31,7 @@ class Account {
     const sql = "SELECT * FROM accounts WHERE accountnumber=$1 AND owner=$2";
     pool.query(sql, [req.params.accountNumber, req.user.id])
       .then((account) => {
-        if (account.rows.length==0) {
+        if (account.rows.length === 0) {
           return res.status(404).json({ status: 404, message: "account not yours." });
         }
         return res.status(200).send({ status: 200, account: account.rows });
@@ -75,12 +75,16 @@ class Account {
 
   //@deletes an account
   static delete(req, res) {
-    const account = AccountModel.findOne(req.params.id);
-    if (!account) {
-      return res.status(404).send({ message: "Account not found" });
-    }
-    const ref = AccountModel.delete(req.params.id);
-    return res.status(200).json({ status: 200, message: "account deleted", data: ref });
+    const sql = "DELETE FROM accounts WHERE accountnumber=$1 AND owner=$2 returning *";
+    pool.query(sql, [req.params.accountNumber, req.user.id])
+      .then((accounts) => {
+        if (accounts.rows.length === 0) {
+          return res.status(409).json({ status: 409, message: "forbidden access, account not yours." });
+        }
+        const account = accounts.rows;
+        return res.status(200).json({ status: 200, message: "account deleted", data: account });
+      })
+      .catch(error => res.status(500).json({ error }));
   }
 }
 export default Account;

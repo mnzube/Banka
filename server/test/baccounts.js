@@ -177,34 +177,34 @@ describe("Account", () => {
       });
   });
   ////
-  //it("should return status 0f 200 when deleting an account", (done) => {
-  //chai.request(app)
-  //.delete(`/api/v1/accounts/${accountNumber}`)
-  //.set("Content-Type", "application/json")
-  //.set("Authorization", token)
-  //.end((error, res) => {
-  //if (error) {
-  //done(error);
-  //}
-  //res.should.have.status(200);
-  //res.body.should.have.property("status");
-  //res.body.should.have.property("message");
-  //res.body.should.have.property("data");
-  //done();
-  //});
-  //});
-  //it("should return status 0f 400 when delete account fails", (done) => {
-  //chai.request(app)
-  //.delete("/api/v1/accounts/4674674")
-  //.set("Content-Type", "application/json")
-  //.set("Authorization", token)
-  //.end((error, res) => {
-  //if (error) {
-  //done(error);
-  //}
-  //res.should.have.status(404);
-  //res.body.should.have.property("message");
-  //done();
-  //});
-  //});
+  it("should return status 0f 200 when deleting an account", (done) => {
+    chai.request(app)
+      .delete(`/api/v1/accounts/${accountNumber}`)
+      .set("Content-Type", "application/json")
+      .set("Authorization", token)
+      .end((error, res) => {
+        if (error) {
+          done(error);
+        }
+        res.should.have.status(200);
+        res.body.should.have.property("status");
+        res.body.should.have.property("message");
+        res.body.should.have.property("data");
+        done();
+      });
+  });
+  it("should return status 0f 404 when delete account which is not available", (done) => {
+    chai.request(app)
+      .delete("/api/v1/accounts/4674674")
+      .set("Content-Type", "application/json")
+      .set("Authorization", token)
+      .end((error, res) => {
+        if (error) {
+          done(error);
+        }
+        res.should.have.status(404);
+        res.body.should.have.property("message");
+        done();
+      });
+  });
 });
