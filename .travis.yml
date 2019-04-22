@@ -15,6 +15,7 @@ before_script:
 
 script:
     - npm install
+    - npm run drop
     - npm run create
     - npm install coveralls
     - npm test

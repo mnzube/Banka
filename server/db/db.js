@@ -1,8 +1,7 @@
-import db from '../config/database';
+import db from "../config/database";
 
-const createTable =()=>new Promise((resolve,reject)=>{
-const tables =
- `CREATE TABLE IF NOT EXISTS
+const createTable = () => new Promise((resolve, reject) => {
+  const tables = `CREATE TABLE IF NOT EXISTS
  accounts(
      account_id SERIAL PRIMARY KEY NOT NULL,
      accountnumber VARCHAR(255) NOT NULL,
@@ -22,34 +21,45 @@ const tables =
      password VARCHAR(255) NOT NULL,
      type VARCHAR(255) NOT NULL,
      isadmin BOOLEAN DEFAULT false NOT NULL
+ );
+ CREATE TABLE IF NOT EXISTS
+ transactions(
+     transaction_id serial PRIMARY KEY NOT NULL,
+     accountnumber VARCHAR(255) NOT NULL,
+     cashier INTEGER NOT NULL,
+     transaction_type VARCHAR(255) NOT NULL,
+     amount VARCHAR(255) NOT NULL,
+     oldbalance VARCHAR(255) NOT NULL,
+     newbalance VARCHAR(255) NOT NULL,
+     transaction_date DATE DEFAULT CURRENT_DATE NOT NULL
  );`;
 
- db.query(tables)
- .then((res)=> {
-     //console.log(res);
-     resolve();    
- })
- .catch((error)=>{
-    // console.log(error);
-     reject(error);
- })
+  db.query(tables)
+    .then((res) => {
+      //console.log(res);
+      resolve();
+    })
+    .catch((error) => {
+    //console.log(error);
+      reject(error);
+    });
 });
-const dropTable =()=>new Promise ((resolve,reject)=>{
-    const tables = 
-    `DROP TABLE IF EXISTS accounts CASCADE;
+const dropTable = () => new Promise((resolve, reject) => {
+  const tables = `DROP TABLE IF EXISTS accounts CASCADE;
      DROP TABLE IF EXISTS users CASCADE;
+     DROP TABLE IF EXISTS transaction CASCADE;
     `;
-    db.query(tables)
- .then((res) =>{
- //console.log(res);
- resolve();
-})
-.catch((error)=>{
-//console.log(error);
-reject(error);
-});
+  db.query(tables)
+    .then((res) => {
+      //console.log(res);
+      resolve();
+    })
+    .catch((error) => {
+      //console.log(error);
+      reject(error);
+    });
 });
 
- export{createTable, dropTable};
+export { createTable, dropTable };
 
- require('make-runnable');
+require("make-runnable");

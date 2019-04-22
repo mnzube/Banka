@@ -8,8 +8,8 @@
     "start": "node --require @babel/register ./server/index.js",
     "dev": "nodemon --require @babel/register ./server/index.js",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
-    "create": "node --require @babel/register server/db/db createTable",
-    "drop": "node --require @babel/register server/db/db dropTable"
+    "create": "node --require @babel/register server/db/db createTable --exit",
+    "drop": "node --require @babel/register server/db/db dropTable --exit"
   },
   "repository": {
     "type": "git",
