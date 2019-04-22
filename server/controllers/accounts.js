@@ -28,11 +28,15 @@ class Account {
 
   //get one account
   static getOne(req, res) {
-    const account = AccountModel.findOne(req.params.id);
-    if (!account) {
-      return res.status(404).send({ status: 404, message: "account not found" });
-    }
-    return res.status(200).send({ status: 200, account });
+    const sql = "SELECT * FROM accounts WHERE accountnumber=$1 AND owner=$2";
+    pool.query(sql, [req.params.accountNumber, req.user.id])
+      .then((account) => {
+        if (account.rows.length==0) {
+          return res.status(404).json({ status: 404, message: "account not yours." });
+        }
+        return res.status(200).send({ status: 200, account: account.rows });
+      })
+      .catch(error => res.status(500).json({ status: 500, error }));
   }
 
   //@get all accounts

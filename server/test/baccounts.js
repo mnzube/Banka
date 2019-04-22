@@ -115,36 +115,36 @@ describe("Account", () => {
         done();
       });
   });
-  //it("should return status 0f 200 when getting one account", (done) => {
-  //chai.request(app)
-  //.get(`/api/v1/accounts/${accountNumber}`)
-  //.set("Content-Type", "application/json")
-  //.set("Authorization", token)
-  //.end((error, res) => {
-  //if (error) {
-  //done(error);
-  //}
-  //res.should.have.status(200);
-  //res.body.should.have.property("status");
-  //res.body.should.have.property("account");
-  //done();
-  //});
-  //});
-  //it("should return status 0f 404 when account not found", (done) => {
-  //chai.request(app)
-  //.get("/api/v1/accounts/56579657965769576")
-  //.set("Content-Type", "application/json")
-  //.set("Authorization", token)
-  //.end((error, res) => {
-  //if (error) {
-  //done(error);
-  //}
-  //res.should.have.status(404);
-  //res.body.should.have.property("status");
-  //res.body.should.have.property("message");
-  //done();
-  //});
-  //});
+  it("should return status 0f 200 when getting one account", (done) => {
+    chai.request(app)
+      .get(`/api/v1/accounts/${accountNumber}`)
+      .set("Content-Type", "application/json")
+      .set("Authorization", token)
+      .end((error, res) => {
+        if (error) {
+          done(error);
+        }
+        res.should.have.status(200);
+        res.body.should.have.property("status");
+        res.body.should.have.property("account");
+        done();
+      });
+  });
+  it("should return status 0f 404 when account not found", (done) => {
+    chai.request(app)
+      .get("/api/v1/accounts/56579657965769576")
+      .set("Content-Type", "application/json")
+      .set("Authorization", token)
+      .end((error, res) => {
+        if (error) {
+          done(error);
+        }
+        res.should.have.status(404);
+        res.body.should.have.property("status");
+        res.body.should.have.property("message");
+        done();
+      });
+  });
   //update
   it("should return status 0f 200 when updating account", (done) => {
     chai.request(app)
