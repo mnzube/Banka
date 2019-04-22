@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/mnzube/Banka.svg?branch=develop)](https://travis-ci.org/mnzube/Banka)
 [![Coverage Status](https://coveralls.io/repos/github/mnzube/Banka/badge.svg)](https://coveralls.io/github/mnzube/Banka)
 [![Maintainability](https://api.codeclimate.com/v1/badges/7c0570b1713671955908/maintainability)](https://codeclimate.com/github/mnzube/Banka/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/7c0570b1713671955908/test_coverage)](https://codeclimate.com/github/mnzube/Banka/test_coverage)
+
 
 
 # Description
@@ -47,8 +47,9 @@ With Postman, test if all endpoints work (Find a list of endpoint in the table a
 
 ## Contribute
 
-Any instructions needed to help others contribute to this repository
-
+If you would like to contribute to this project contact me on my gmail account mnzub
+e@gmail.com
+Other contributors to the project :Opeoluwa Iyi-Kuyoro
 ## Deployment
 
 Clone this repo: in your terminal => use git clone https://github.com/mnzube/Banka.git

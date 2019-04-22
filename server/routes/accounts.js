@@ -2,6 +2,7 @@ import express from "express";
 import Account from "../controllers/accounts";
 import auth from "../middleware/auth";
 import validation from "../middleware/accounts";
+import {checkAccount} from "../middleware/accountCheck";
 const app = express.Router();
 
 
@@ -9,8 +10,8 @@ const app = express.Router();
 app.post("/accounts",  auth.checkAuth, validation.accountValidation, Account.create);
 app.get("/accounts/:id", auth.checkAuth, Account.getOne);
 app.get("/accounts", auth.checkAuth, Account.getAll);
-app.patch("/accounts/:id", auth.checkAuth, Account.update);
-app.delete("/accounts/:id", auth.checkAuth, Account.delete);
+app.patch("/accounts/:accountNumber", auth.checkAuth, checkAccount,Account.update);
+app.delete("/accounts/:accountNumber", auth.checkAuth, Account.delete);
 
 
 export default app;

@@ -9,7 +9,9 @@ const tables =
      owner INTEGER NOT NULL,
      type VARCHAR(255) NOT NULL,
      balance VARCHAR(255) NOT NULL,
-     createdon DATE DEFAULT CURRENT_DATE NOT NULL 
+     createdon DATE DEFAULT CURRENT_DATE NOT NULL,
+     status VARCHAR(255) NOT NULL
+
  );
  CREATE TABLE IF NOT EXISTS
  users(
