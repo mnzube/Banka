@@ -93,7 +93,7 @@ class UserController {
               });
           });
         } else {
-          return res.status(400).json({ status:400, error: "authentication failed." });
+          return res.status(400).json({ status: 400, error: "authentication failed." });
         }
       })
       .catch((error) => {

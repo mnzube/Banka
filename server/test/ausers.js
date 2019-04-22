@@ -13,7 +13,9 @@ describe("User", () => {
   before(()=>{
     const sql=`DELETE FROM users WHERE email=$1`;
     pool.query(sql,[signup.email])
-    .then()
+    .then(()=>{
+      console.log("deleted");
+    })
     .catch((error)=>{
       console.log(error);
     })

@@ -1,26 +1,25 @@
-import AccountModel from "../models/accounts";
+import pool from "../config/database";
 
 class Account {
   //@creates an account
   static create(req, res) {
-    if (
-      !req.body.type
-         && !req.body.balance) {
-      return res.status(400).send({ message: "All fields are required" });
-    }
-    if (req.body.type === ""
-         || req.body.status === "") {
-      return res.status(400).send({ message: "All fields are required" });
-    }
-    if (!Number.parseFloat(req.body.balance) || typeof (req.body.balance) === "string") {
-      return res.status(400).send({ message: "balance must be a number" });
-    }
-    const data = AccountModel.create(req.body, req.user.id);
-    return res.status(201).json({
-      status: 201,
-      message: "Account created succesfully",
-      data
-    });
+    const newAccount = {
+      type: req.body.type,
+      balance: req.body.balance,
+      accountNumber: `${new Date().getFullYear()}-${Math.random()}`,
+      owner:req.user.id
+    };
+    const sql = "INSERT INTO accounts(type,balance,accountnumber,owner) VALUES($1,$2,$3,$4) returning *";
+    pool.query(sql, [newAccount.type,newAccount.balance,
+      newAccount.accountNumber,newAccount.owner])
+      .then((accounts) => {
+        const save = accounts.rows[0];
+        if (save) {
+           return res.status(201).json({status:201,message:'account created successfully.',
+           account:save});
+        }
+      })
+      .catch(error => res.status(500).json({ status: 500, error}));
   }
 
   //get one account

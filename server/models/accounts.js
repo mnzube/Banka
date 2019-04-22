@@ -15,7 +15,7 @@ class Account {
       balance: data.balance,
       status: "dormant",
       createdOn: new Date()
-
+     
     };
     this.accounts.push(newAccount);
     return newAccount;
