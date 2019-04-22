@@ -5,7 +5,7 @@ const Validation = {
         || !req.body.password || req.body.email === ""
         || req.body.password === "" || req.body.lastName === ""
          || req.body.firstName === "") {
-      return res.status(400).json({ status: 400, error: "all fields are required" });
+      return res.status(400).json({ status: 400, error: "first name, last name, email or password required" });
     }
     next();
   },
@@ -14,7 +14,7 @@ const Validation = {
     if (!req.body.email || !req.body.password || req.body.email === "" || req.body.password === "") {
       return res.status(400).json({
         status: 400,
-        error: "all fields are required"
+        error: "first name, last name, email or password required"
       });
     }
     next();

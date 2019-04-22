@@ -1,7 +1,7 @@
 {
     "accounts":{
         "balance":1000,
-        "type":"saving"
+        "type":"savings"
     },
     "accountValidation":{
         "balance":"1000"
