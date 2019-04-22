@@ -2,7 +2,7 @@ import chai from "chai";
 import chaiHttp from "chai-http";
 import app from "../index";
 import { login } from "../data/users.json";
-import { accounts, accountValidation} from "../data/accounts.json";
+import { accounts, accountValidation } from "../data/accounts.json";
 
 chai.use(chaiHttp);
 chai.should();
@@ -70,7 +70,7 @@ describe("Account", () => {
         done();
       });
   });
-  // //status of 400
+  ////status of 400
   it("should return status of 400 when creating account", (done) => {
     chai.request(app)
       .post("/api/v1/accounts")
@@ -86,7 +86,7 @@ describe("Account", () => {
         done();
       });
   });
-  // //should create account
+  ////should create account
   it("should return status of 400 when there is validation error", (done) => {
     chai.request(app)
       .post("/api/v1/accounts")
@@ -101,49 +101,50 @@ describe("Account", () => {
         done();
       });
   });
-  // it("should return status 0f 200 when getting all accounts", (done) => {
-  //   chai.request(app)
-  //     .get("/api/v1/accounts")
-  //     .set("Content-Type", "application/json")
-  //     .set("Authorization", token)
-  //     .end((error, res) => {
-  //       if (error) {
-  //         done(error);
-  //       }
-  //       res.should.have.status(200);
-  //       done();
-  //     });
-  // });
-  // it("should return status 0f 200 when getting one account", (done) => {
-  //   chai.request(app)
-  //     .get(`/api/v1/accounts/${accountNumber}`)
-  //     .set("Content-Type", "application/json")
-  //     .set("Authorization", token)
-  //     .end((error, res) => {
-  //       if (error) {
-  //         done(error);
-  //       }
-  //       res.should.have.status(200);
-  //       res.body.should.have.property("status");
-  //       res.body.should.have.property("account");
-  //       done();
-  //     });
-  // });
-  // it("should return status 0f 404 when account not found", (done) => {
-  //   chai.request(app)
-  //     .get("/api/v1/accounts/56579657965769576")
-  //     .set("Content-Type", "application/json")
-  //     .set("Authorization", token)
-  //     .end((error, res) => {
-  //       if (error) {
-  //         done(error);
-  //       }
-  //       res.should.have.status(404);
-  //       res.body.should.have.property("status");
-  //       res.body.should.have.property("message");
-  //       done();
-  //     });
-  // });
+
+  it("should return status 0f 200 when getting all accounts", (done) => {
+    chai.request(app)
+      .get("/api/v1/accounts")
+      .set("Content-Type", "application/json")
+      .set("Authorization", token)
+      .end((error, res) => {
+        if (error) {
+          done(error);
+        }
+        res.should.have.status(200);
+        done();
+      });
+  });
+  //it("should return status 0f 200 when getting one account", (done) => {
+  //chai.request(app)
+  //.get(`/api/v1/accounts/${accountNumber}`)
+  //.set("Content-Type", "application/json")
+  //.set("Authorization", token)
+  //.end((error, res) => {
+  //if (error) {
+  //done(error);
+  //}
+  //res.should.have.status(200);
+  //res.body.should.have.property("status");
+  //res.body.should.have.property("account");
+  //done();
+  //});
+  //});
+  //it("should return status 0f 404 when account not found", (done) => {
+  //chai.request(app)
+  //.get("/api/v1/accounts/56579657965769576")
+  //.set("Content-Type", "application/json")
+  //.set("Authorization", token)
+  //.end((error, res) => {
+  //if (error) {
+  //done(error);
+  //}
+  //res.should.have.status(404);
+  //res.body.should.have.property("status");
+  //res.body.should.have.property("message");
+  //done();
+  //});
+  //});
   //update
   it("should return status 0f 200 when updating account", (done) => {
     chai.request(app)
@@ -160,7 +161,7 @@ describe("Account", () => {
         done();
       });
   });
-  // //
+  //
   it("should return status 0f 404 when account not found", (done) => {
     chai.request(app)
       .patch("/api/v1/accounts/548674")
@@ -175,35 +176,35 @@ describe("Account", () => {
         done();
       });
   });
-  // //
-  // it("should return status 0f 200 when deleting an account", (done) => {
-  //   chai.request(app)
-  //     .delete(`/api/v1/accounts/${accountNumber}`)
-  //     .set("Content-Type", "application/json")
-  //     .set("Authorization", token)
-  //     .end((error, res) => {
-  //       if (error) {
-  //         done(error);
-  //       }
-  //       res.should.have.status(200);
-  //       res.body.should.have.property("status");
-  //       res.body.should.have.property("message");
-  //       res.body.should.have.property("data");
-  //       done();
-  //     });
-  // });
-  // it("should return status 0f 400 when delete account fails", (done) => {
-  //   chai.request(app)
-  //     .delete("/api/v1/accounts/4674674")
-  //     .set("Content-Type", "application/json")
-  //     .set("Authorization", token)
-  //     .end((error, res) => {
-  //       if (error) {
-  //         done(error);
-  //       }
-  //       res.should.have.status(404);
-  //       res.body.should.have.property("message");
-  //       done();
-  //     });
-  // });
+  ////
+  //it("should return status 0f 200 when deleting an account", (done) => {
+  //chai.request(app)
+  //.delete(`/api/v1/accounts/${accountNumber}`)
+  //.set("Content-Type", "application/json")
+  //.set("Authorization", token)
+  //.end((error, res) => {
+  //if (error) {
+  //done(error);
+  //}
+  //res.should.have.status(200);
+  //res.body.should.have.property("status");
+  //res.body.should.have.property("message");
+  //res.body.should.have.property("data");
+  //done();
+  //});
+  //});
+  //it("should return status 0f 400 when delete account fails", (done) => {
+  //chai.request(app)
+  //.delete("/api/v1/accounts/4674674")
+  //.set("Content-Type", "application/json")
+  //.set("Authorization", token)
+  //.end((error, res) => {
+  //if (error) {
+  //done(error);
+  //}
+  //res.should.have.status(404);
+  //res.body.should.have.property("message");
+  //done();
+  //});
+  //});
 });

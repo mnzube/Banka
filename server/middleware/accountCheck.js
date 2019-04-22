@@ -7,14 +7,11 @@ const checkAccount = (req, res, next) => {
       if (account.rows.length !== 0) {
         req.accounts = account.rows[0];
         next();
-      }else{
+      } else {
         return res.status(404).json({ status: 404, message: "account not found." });
       }
-      
     })
-    .catch((error) => {
-      return res.status(500).json({error});
-    });
+    .catch(error => res.status(500).json({ error }));
 };
 
 export {

@@ -37,8 +37,10 @@ class Account {
 
   //@get all accounts
   static getAll(req, res) {
-    const accounts = AccountModel.findAll();
-    return res.status(200).send({ status: 200, accounts });
+    const sql = "SELECT * FROM accounts";
+    pool.query(sql)
+      .then(accounts => res.status(200).json({ status: 200, accounts: accounts.rows }))
+      .catch(error => res.status(500).json({ error }));
   }
 
   //activates an account
@@ -53,9 +55,7 @@ class Account {
           message: `account is ${deactivate}`,
           account: accounts.rows
         }))
-        .catch((error) => {
-          return res.status(500).json({error});
-        });
+        .catch(error => res.status(500).json({ error }));
     } else {
       const activate = "active";
       const sql = "UPDATE accounts SET status=$1 WHERE accountnumber=$2 returning*";
@@ -65,9 +65,7 @@ class Account {
           message: `account is ${activate}`,
           account: accounts.rows
         }))
-        .catch((error) => {
-          return res.status(500).json({error});
-        });
+        .catch(error => res.status(500).json({ error }));
     }
   }
 
