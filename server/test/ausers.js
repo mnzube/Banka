@@ -10,15 +10,15 @@ chai.use(chaiHttp);
 chai.should();
 
 describe("User", () => {
-  before(()=>{
-    const sql=`DELETE FROM users WHERE email=$1`;
-    pool.query(sql,[signup.email])
-    .then(()=>{
-      console.log("deleted");
-    })
-    .catch((error)=>{
-      console.log(error);
-    })
+  before(() => {
+    const sql = "DELETE FROM users WHERE email=$1";
+    pool.query(sql, [signup.email])
+      .then(() => {
+        console.log("deleted");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   });
 
   it("should create user and return status of 201", (done) => {
@@ -34,6 +34,20 @@ describe("User", () => {
         res.body.should.have.property("message");
         res.body.should.have.property("token");
         res.body.should.have.property("data");
+        done();
+      });
+  });
+
+  it("should not create user and return status of 409", (done) => {
+    chai.request(app)
+      .post("/api/v1/auth/signup")
+      .set("Content-Type", "application/json")
+      .send(signup)
+      .end((error, res) => {
+        if (error) {
+          done(error);
+        }
+        res.should.have.status(409);
         done();
       });
   });
