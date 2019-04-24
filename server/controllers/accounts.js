@@ -6,7 +6,7 @@ class Account {
     const newAccount = {
       type: req.body.type,
       balance: req.body.balance,
-      accountNumber: `${new Date().getFullYear()}-${Math.random()}`,
+      accountNumber: `${new Date().getFullYear()}${Math.floor(100000 + Math.random() * 9000000)}`,
       owner: req.user.id,
       status: "dormant"
     };

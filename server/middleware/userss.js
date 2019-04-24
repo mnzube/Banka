@@ -16,7 +16,7 @@ const checkType = (req, res, next) => {
   pool.query(sql, [req.user.id])
     .then((user) => {
       const users = user.rows[0];
-      if (users.type !== "staff") {
+      if (users.type !== "cashier") {
         return res.status(409).json({
           status: 409,
           message: "sorry you are not allowed to perform this action."
