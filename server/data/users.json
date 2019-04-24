@@ -4,7 +4,7 @@
         "lastName":"tests",
         "email":"test@gmail.com",
         "password":"123456",
-        "type":"staff",
+        "type":"cashier",
         "isAdmin":true
     },
     "signup1":{
