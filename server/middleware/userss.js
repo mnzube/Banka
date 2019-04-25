@@ -1,9 +1,8 @@
-import pool from "../config/database";
-import sql from "../models/users";
+import User from "../models/users";
 
 
 const checkEmail = (req, res, next) => {
-  pool.query(sql.chckEmail, [req.body.email])
+  User.login(req.body.email)
     .then((user) => {
       if (user.rows.length !== 0) {
         return res.status(409).json({ status: 409, error: "email already exists." });
@@ -11,9 +10,8 @@ const checkEmail = (req, res, next) => {
       next();
     });
 };
-
 const checkType = (req, res, next) => {
-  pool.query(sql.usrType, [req.user.id])
+  User.findById(req.user.id)
     .then((user) => {
       const users = user.rows[0];
       if (users.type !== "cashier") {

@@ -1,8 +1,7 @@
-import pool from "../config/database";
-import sql from "../models/accounts";
+import Account from "../models/accounts";
 
 const checkAccount = (req, res, next) => {
-  pool.query(sql.accntCheck, [req.params.accountNumber])
+  Account.getAccount(req.params.accountNumber)
     .then((account) => {
       if (account.rows.length !== 0) {
         req.accounts = account.rows[0];
