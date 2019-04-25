@@ -4,9 +4,9 @@
   "description": "The light weight core banking application that powers banking operations",
   "main": "index.js",
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text --timeout=1500 mocha --require @babel/register server/test/* --exit",
-    "start": "node --require @babel/register ./server/index.js",
-    "dev": "nodemon --require @babel/register ./server/index.js",
+    "test": "nyc --reporter=html --reporter=text --timeout=1500 mocha --require @babel/register  --require @babel/polyfill server/test/* --exit",
+    "start": "node --require @babel/register --require @babel/polyfill ./server/index.js",
+    "dev": "nodemon --require @babel/register --require @babel/polyfill ./server/index.js",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "create": "node --require @babel/register server/db/db createTable --exit",
     "drop": "node --require @babel/register server/db/db dropTable --exit"
@@ -23,6 +23,7 @@
   "homepage": "https://github.com/mnzube/Banka#readme",
   "dependencies": {
     "@babel/core": "^7.4.3",
+    "@babel/polyfill": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
     "@babel/register": "^7.4.0",
     "bcryptjs": "^2.4.3",

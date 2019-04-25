@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
-import pool from "../config/database";
+import User from "../models/users";
 
 dotenv.config();
 
@@ -16,9 +16,7 @@ class UserController {
       isAdmin: (req.body.isAdmin ? req.body.isAdmin : false),
       type: (req.body.type ? req.body.type : "client")
     };
-    const sql = "INSERT INTO users(email,firstname,lastname,password,isadmin,type) VALUES($1,$2,$3,$4,$5,$6) returning *";
-    pool.query(sql, [newUser.email, newUser.firstName, newUser.lastName,
-      newUser.password, newUser.isAdmin, newUser.type])
+    User.create(newUser)
       .then((user) => {
         const save = user.rows[0];
         if (save) {
@@ -46,14 +44,12 @@ class UserController {
             });
         }
       })
-      .catch(error => res.status(500).json({ status: 500, error }));
+      .catch(error => res.status(500).json({ status: 500, error:error.message }));
   }
 
   //signin
   static signin(req, res) {
-    //
-    const sql = "SELECT * FROM users WHERE email=$1";
-    pool.query(sql, [req.body.email])
+    User.login(req.body.email)
       .then((users) => {
         if (users.rows.length !== 0) {
         //
