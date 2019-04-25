@@ -1,8 +1,9 @@
 import pool from "../config/database";
+import sql from "../models/users";
+
 
 const checkEmail = (req, res, next) => {
-  const sql = "SELECT * FROM users WHERE email=$1";
-  pool.query(sql, [req.body.email])
+  pool.query(sql.chckEmail, [req.body.email])
     .then((user) => {
       if (user.rows.length !== 0) {
         return res.status(409).json({ status: 409, error: "email already exists." });
@@ -12,8 +13,7 @@ const checkEmail = (req, res, next) => {
 };
 
 const checkType = (req, res, next) => {
-  const sql = "SELECT * FROM users WHERE id=$1";
-  pool.query(sql, [req.user.id])
+  pool.query(sql.usrType, [req.user.id])
     .then((user) => {
       const users = user.rows[0];
       if (users.type !== "cashier") {

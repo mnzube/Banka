@@ -1,4 +1,5 @@
 import pool from "../config/database";
+import sql from "../models/transaction";
 
 class TransactionController {
   static credit(req, res) {
@@ -16,16 +17,16 @@ class TransactionController {
       oldBalance: req.accounts.balance
     };
     //const send = Transaction.create(data);
-    const sql1 = "INSERT INTO transactions(transaction_type,accountnumber,amount,newbalance,oldbalance,cashier) VALUES($1,$2,$3,$4,$5,$6) returning *";
-    pool.query(sql1, [data.type, data.accountNumber, data.amount,
+
+    pool.query(sql.credit, [data.type, data.accountNumber, data.amount,
       data.newBalance, data.oldBalance, data.cashier])
       .then((trans) => {
         const send = trans.rows[0];
         //
         if (send.length !== 0) {
           //@update account
-          const sql2 = "UPDATE accounts SET balance=$1 WHERE accountnumber=$2";
-          pool.query(sql2, [send.newbalance, req.params.accountNumber])
+
+          pool.query(sql.updateCredit, [send.newbalance, req.params.accountNumber])
             .then(() => res.status(201).json({
               status: 201,
               message: "transaction done successfully.",
@@ -59,16 +60,16 @@ class TransactionController {
       oldBalance: req.accounts.balance
     };
       //const send = Transaction.create(data);
-    const sql1 = "INSERT INTO transactions(transaction_type,accountnumber,amount,newbalance,oldbalance,cashier) VALUES($1,$2,$3,$4,$5,$6) returning *";
-    pool.query(sql1, [data.type, data.accountNumber, data.amount,
+
+    pool.query(sql.debit, [data.type, data.accountNumber, data.amount,
       data.newBalance, data.oldBalance, data.cashier])
       .then((trans) => {
         const send = trans.rows[0];
         //
         if (send.length !== 0) {
-          //@update account
-          const sql2 = "UPDATE accounts SET balance=$1 WHERE accountnumber=$2";
-          pool.query(sql2, [send.newbalance, req.params.accountNumber])
+          //update account
+
+          pool.query(sql.updateDebit, [send.newbalance, req.params.accountNumber])
             .then(() => res.status(201).json({
               status: 201,
               message: "transaction done successfully.",

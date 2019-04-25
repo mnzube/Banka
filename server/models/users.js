@@ -1,23 +1,13 @@
-class User {
-  constructor() {
-    this.users = [];
-  }
+const sql = {};
 
-  //@create user
-  create(data) {
-    this.users.push(data);
-    return data;
-  }
+const regUser = "INSERT INTO users(email,firstname,lastname,password,isadmin,type) VALUES($1,$2,$3,$4,$5,$6) returning *";
+const loginUser = "SELECT * FROM users WHERE email=$1";
+const chckEmail = "SELECT * FROM users WHERE email=$1";
+const usrType = "SELECT * FROM users WHERE id=$1";
 
-  find(data) {
-    const users = this.users.find(user => user.email === data);
-    return users;
-  }
+sql.regUser = regUser;
+sql.loginUser = loginUser;
+sql.chckEmail = chckEmail;
+sql.usrType = usrType;
 
-  findById(id) {
-    const users = this.users.find(user => user.id === id);
-    return users;
-  }
-}
-
-export default new User();
+export default sql;

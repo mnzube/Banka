@@ -1,4 +1,5 @@
 import pool from "../config/database";
+import sql from "../models/accounts";
 
 class Account {
   //@creates an account
@@ -10,8 +11,8 @@ class Account {
       owner: req.user.id,
       status: "dormant"
     };
-    const sql = "INSERT INTO accounts(type,balance,accountnumber,owner,status) VALUES($1,$2,$3,$4,$5) returning *";
-    pool.query(sql, [newAccount.type, newAccount.balance,
+
+    pool.query(sql.createAccnt, [newAccount.type, newAccount.balance,
       newAccount.accountNumber, newAccount.owner, newAccount.status])
       .then((accounts) => {
         const save = accounts.rows[0];
@@ -28,8 +29,7 @@ class Account {
 
   //get one account
   static getOne(req, res) {
-    const sql = "SELECT * FROM accounts WHERE accountnumber=$1 AND owner=$2";
-    pool.query(sql, [req.params.accountNumber, req.user.id])
+    pool.query(sql.getAccnt, [req.params.accountNumber, req.user.id])
       .then((account) => {
         if (account.rows.length === 0) {
           return res.status(404).json({ status: 404, message: "account not yours." });
@@ -41,8 +41,7 @@ class Account {
 
   //@get all accounts
   static getAll(req, res) {
-    const sql = "SELECT * FROM accounts";
-    pool.query(sql)
+    pool.query(sql.getAllAccnts)
       .then(accounts => res.status(200).json({ status: 200, accounts: accounts.rows }))
       .catch(error => res.status(500).json({ error }));
   }
@@ -52,8 +51,8 @@ class Account {
     const account = req.accounts;
     if (account.status === "active") {
       const deactivate = "dormant";
-      const sql = "UPDATE accounts SET status=$1 WHERE accountnumber=$2 returning*";
-      pool.query(sql, [deactivate, req.params.accountNumber])
+
+      pool.query(sql.deactivate, [deactivate, req.params.accountNumber])
         .then(accounts => res.status(200).json({
           status: 200,
           message: `account is ${deactivate}`,
@@ -62,8 +61,8 @@ class Account {
         .catch(error => res.status(500).json({ error }));
     } else {
       const activate = "active";
-      const sql = "UPDATE accounts SET status=$1 WHERE accountnumber=$2 returning*";
-      pool.query(sql, [activate, req.params.accountNumber])
+
+      pool.query(sql.activate, [activate, req.params.accountNumber])
         .then(accounts => res.status(200).json({
           status: 200,
           message: `account is ${activate}`,
@@ -75,8 +74,7 @@ class Account {
 
   //@deletes an account
   static delete(req, res) {
-    const sql = "DELETE FROM accounts WHERE accountnumber=$1 AND owner=$2 returning *";
-    pool.query(sql, [req.params.accountNumber, req.user.id])
+    pool.query(sql.deleteAccnt, [req.params.accountNumber, req.user.id])
       .then((accounts) => {
         if (accounts.rows.length === 0) {
           return res.status(409).json({ status: 409, message: "forbidden access, account not yours." });

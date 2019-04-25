@@ -1,5 +1,6 @@
 import db from "../config/database";
 
+
 const createTable = () => new Promise((resolve, reject) => {
   const tables = `CREATE TABLE IF NOT EXISTS
  accounts(
@@ -40,7 +41,7 @@ const createTable = () => new Promise((resolve, reject) => {
       resolve();
     })
     .catch((error) => {
-    //console.log(error);
+      //console.log(error);
       reject(error);
     });
 });
@@ -55,11 +56,17 @@ const dropTable = () => new Promise((resolve, reject) => {
       resolve();
     })
     .catch((error) => {
-      //console.log(error);
+      console.log(error);
       reject(error);
     });
 });
 
-export { createTable, dropTable };
+const database = (sql, data = []) => {
+  db.query(sql, data);
+  return db.rows;
+};
+
+
+export { createTable, dropTable, database };
 
 require("make-runnable");

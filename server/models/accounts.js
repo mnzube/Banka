@@ -1,58 +1,19 @@
-import uuid from "uuid";
+const sql = {};
 
-class Account {
-  constructor() {
-    this.accounts = [];
-  }
+const createAccnt = "INSERT INTO accounts(type,balance,accountnumber,owner,status) VALUES($1,$2,$3,$4,$5) returning *";
+const getAccnt = "SELECT * FROM accounts WHERE accountnumber=$1 AND owner=$2";
+const getAllAccnts = "SELECT * FROM accounts";
+const activate = "UPDATE accounts SET status=$1 WHERE accountnumber=$2 returning*";
+const deactivate = "UPDATE accounts SET status=$1 WHERE accountnumber=$2 returning*";
+const deleteAccnt = "DELETE FROM accounts WHERE accountnumber=$1 AND owner=$2 returning *";
+const accntCheck = "SELECT * FROM accounts WHERE accountnumber=$1";
 
-  //creates an account
-  create(data, userId) {
-    const newAccount = {
-      id: uuid.v4(),
-      accountNumber: `${new Date().getFullYear()}-${Math.random()}`,
-      owner: userId,
-      type: data.type,
-      balance: data.balance,
-      status: "dormant",
-      createdOn: new Date()
-     
-    };
-    this.accounts.push(newAccount);
-    return newAccount;
-  }
+sql.accntCheck = accntCheck;
+sql.createAccnt = createAccnt;
+sql.getAccnt = getAccnt;
+sql.getAllAccnts = getAllAccnts;
+sql.activate = activate;
+sql.deactivate = deactivate;
+sql.deleteAccnt = deleteAccnt;
 
-  //@finds one account
-  findOne(accountNumber) {
-    return this.accounts.find(account => account.accountNumber === accountNumber);
-  }
-
-  //@finds all accounts
-  findAll() {
-    return this.accounts;
-  }
-
-  ////@Account status
-  update(id, data) {
-    const account = this.findOne(id);
-    const index = this.accounts.indexOf(account);
-    this.accounts[index].status = data;
-    return this.accounts[index];
-  }
-
-  //@deletes an account
-  delete(id) {
-    const account = this.findOne(id);
-    const index = this.accounts.indexOf(account);
-    const deleted = this.accounts.splice(index, 1);
-    return deleted;
-  }
-
-  updateAccountBalance(data) {
-    const account = this.findOne(data.accountNumber);
-    const index = this.accounts.indexOf(account);
-    const update = this.accounts[index].balance = data.balance;
-    return update;
-  }
-}
-
-export default new Account();
+export default sql;
