@@ -93,17 +93,37 @@ class Account {
         const account = accounts.rows;
         return res.status(200).json({ status: 200, message: "account deleted", data: account });
       })
-      .catch(error => res.status(500).json({ error:error.message }));
+      .catch(error => res.status(500).json({ error: error.message }));
   }
+
   //get transaction
-static getTransactions(req,res){
-  AccountModel.findAccountTransaction(req.params.accountNumber)
-   .then((account)=>{
-     const accounts=account.rows;
-     return res.status(200).json({status:200, accounts});
-   })
-   .catch(error => res.status(500).json({ error:error.message }));
-}
+  static getTransactions(req, res) {
+    AccountModel.findAccountTransaction(req.params.accountNumber)
+      .then((account) => {
+        const accounts = account.rows;
+        return res.status(200).json({ status: 200, accounts });
+      })
+      .catch(error => res.status(500).json({ error: error.message }));
+  }
+
+  static getAccountType(req, res) {
+    const { status } = req.query;
+    if (!status || status === "" || status === undefined) {
+      return res.status(400).json({ status: 400, message: "invalid account." });
+    }
+    AccountModel.dormantAccount(status)
+      .then((accounts) => {
+        if (accounts.rows.length === 0) {
+          return res.status(200).json({
+            status: 200,
+            message: `Sorry there are no ${status} accounts.`,
+            accounts: accounts.rows
+          });
+        }
+        return res.status(200).json({ status: 200, accounts: accounts.rows });
+      })
+      .catch(error => res.status(500).json({ error: error.message }));
+  }
 }
 
 export default Account;

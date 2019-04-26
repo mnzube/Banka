@@ -4,6 +4,7 @@ import validation from "../middleware/users";
 import { checkEmail } from "../middleware/userss";
 import auth from "../middleware/auth";
 
+
 const app = express.Router();
 //signup
 app.post("/auth/signup", validation.signUpValidation, checkEmail, users.signup);

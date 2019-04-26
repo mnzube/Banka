@@ -82,14 +82,11 @@ class TransactionController {
         console.log(error);
       });
   }
-  static findTransaction(req,res){
+
+  static findTransaction(req, res) {
     Transaction.findById(req.params.transactionId)
-     .then((transaction)=>{
-       return res.status(200).json({status:200, transaction:transaction.rows});
-     })
-     .catch((error)=>{
-       return res.status(500).json({error:error.message});
-     })
+      .then(transaction => res.status(200).json({ status: 200, transaction: transaction.rows }))
+      .catch(error => res.status(500).json({ error: error.message }));
   }
 }
 
