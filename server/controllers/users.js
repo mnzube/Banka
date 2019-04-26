@@ -44,7 +44,7 @@ class UserController {
             });
         }
       })
-      .catch(error => res.status(500).json({ status: 500, error:error.message }));
+      .catch(error => res.status(500).json({ status: 500, error: error.message }));
   }
 
   //signin
@@ -95,6 +95,22 @@ class UserController {
       .catch((error) => {
         console.log(error);
       });
+  }
+
+  static async findAccount(req, res) {
+    try {
+      const find = await User.login(req.params.email);
+      if (find.rows.length === 0) {
+        return res.status(404).json({ status: 404, error: "email not found" });
+      }
+      const findAcc = await User.findAccountByEmail(find.rows[0].id);
+      if (findAcc.rows.length !== 0) {
+        return res.status(200).json({ status: 200, user: find.rows ,account: findAcc.rows});
+      }
+      return res.status(404).json({ status: 404, error: "account not found" });
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
   }
 }
 
