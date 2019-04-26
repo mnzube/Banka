@@ -12,6 +12,7 @@ app.get("/accounts/:accountNumber", auth.checkAuth, checkAccount,Account.getOne)
 app.get("/accounts", auth.checkAuth, Account.getAll);
 app.patch("/accounts/:accountNumber", auth.checkAuth, checkAccount, Account.update);
 app.delete("/accounts/:accountNumber", auth.checkAuth,checkAccount, Account.delete);
-
+//@view transaction
+app.get("/accounts/:accountNumber/transactions",auth.checkAuth,checkAccount,Account.getTransactions);
 
 export default app;

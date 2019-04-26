@@ -29,6 +29,12 @@ class AccountModel {
     return updateData;
   }
 
+  static async findAccountTransaction(data) {
+    const sql = "SELECT * FROM transactions WHERE accountnumber=$1";
+    const findAccount = await pool.query(sql, [data]);
+    return findAccount;
+  }
+
   static async destroy(data) {
     const deleteAccnt = "DELETE FROM accounts WHERE accountnumber=$1 AND owner=$2 returning *";
     const deleteData = await pool.query(deleteAccnt, [data.accountNumber, data.userId]);
