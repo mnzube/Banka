@@ -93,7 +93,17 @@ class Account {
         const account = accounts.rows;
         return res.status(200).json({ status: 200, message: "account deleted", data: account });
       })
-      .catch(error => res.status(500).json({ error }));
+      .catch(error => res.status(500).json({ error:error.message }));
   }
+  //get transaction
+static getTransactions(req,res){
+  AccountModel.findAccountTransaction(req.params.accountNumber)
+   .then((account)=>{
+     const accounts=account.rows;
+     return res.status(200).json({status:200, accounts});
+   })
+   .catch(error => res.status(500).json({ error:error.message }));
 }
+}
+
 export default Account;

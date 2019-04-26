@@ -124,19 +124,19 @@ describe("Transaction", () => {
       });
   });
   it("should respond with unauthorized access and status 0f 400", (done) => {
-  chai.request(app)
-  .post(`/api/v1/transaction/${accountNumber}/debit`)
-  .set("Content-Type", "application/json")
-  .set("Authorization", token2)
-  .send({ amount: 500 })
-  .end((error, res) => {
-  if (error) {
-  done(error);
-  }
-  res.should.have.status(409);
-  res.body.should.have.property("status");
-  done();
-  });
+    chai.request(app)
+      .post(`/api/v1/transaction/${accountNumber}/debit`)
+      .set("Content-Type", "application/json")
+      .set("Authorization", token2)
+      .send({ amount: 500 })
+      .end((error, res) => {
+        if (error) {
+          done(error);
+        }
+        res.should.have.status(409);
+        res.body.should.have.property("status");
+        done();
+      });
   });
   //credit test
   it("should return status code of 404 on credit", (done) => {
@@ -214,6 +214,21 @@ describe("Transaction", () => {
           done(error);
         }
         res.should.have.status(400);
+        done();
+      });
+  });
+
+  //@get account transactions
+  it("should return status code of 200 GET account transaction", (done) => {
+    chai.request(app)
+      .get(`/api/v1/accounts/${accountNumber}/transactions`)
+      .set("Content-Type", "application/json")
+      .set("Authorization", token)
+      .end((error, res) => {
+        if (error) {
+          done(error);
+        }
+        res.should.have.status(200);
         done();
       });
   });
