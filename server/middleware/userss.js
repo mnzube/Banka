@@ -14,7 +14,7 @@ const checkType = (req, res, next) => {
   User.findById(req.user.id)
     .then((user) => {
       const users = user.rows[0];
-      if (users.type !== "cashier") {
+      if (users.type !== "cashier" || users.type===undefined) {
         return res.status(409).json({
           status: 409,
           message: "sorry you are not allowed to perform this action."
