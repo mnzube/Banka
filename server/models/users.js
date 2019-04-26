@@ -23,6 +23,12 @@ class User {
     const findData = await pool.query(usrType, [data]);
     return findData;
   }
+
+  static async findAccountByEmail(data) {
+    const sql = "SELECT * FROM accounts WHERE owner=$1";
+    const findData = await pool.query(sql, [data]);
+    return findData;
+  }
 }
 
 export default User;
