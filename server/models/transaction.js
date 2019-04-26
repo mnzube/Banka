@@ -36,6 +36,11 @@ class Transaction {
       data.newBalance, data.oldBalance, data.cashier]);
     return createTrans;
   }
+  static async findById(data){
+    const sql="SELECT * FROM transactions WHERE transaction_id=$1";
+    const findData= await pool.query(sql,[data]);
+    return findData;
+  }
 }
 
 export default Transaction;

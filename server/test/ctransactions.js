@@ -11,7 +11,7 @@ chai.should();
 let token;
 let accountNumber;
 let token2;
-
+let transactionId;
 describe("Transaction", () => {
   before("let staff login", (done) => {
     chai.request(app)
@@ -164,6 +164,7 @@ describe("Transaction", () => {
         if (error) {
           done(error);
         }
+        transactionId = res.body.Transaction.transaction_id;
         res.should.have.status(201);
         res.body.should.have.property("status");
         res.body.should.have.property("message");
@@ -222,6 +223,20 @@ describe("Transaction", () => {
   it("should return status code of 200 GET account transaction", (done) => {
     chai.request(app)
       .get(`/api/v1/accounts/${accountNumber}/transactions`)
+      .set("Content-Type", "application/json")
+      .set("Authorization", token)
+      .end((error, res) => {
+        if (error) {
+          done(error);
+        }
+        res.should.have.status(200);
+        done();
+      });
+  });
+  //@gettransaction
+  it("should return status code of 200 GET transaction by id", (done) => {
+    chai.request(app)
+      .get(`/api/v1/transaction/${transactionId}`)
       .set("Content-Type", "application/json")
       .set("Authorization", token)
       .end((error, res) => {
