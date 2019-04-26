@@ -10,7 +10,7 @@ const checkAccount = (req, res, next) => {
         return res.status(404).json({ status: 404, message: "account not found." });
       }
     })
-    .catch(error => res.status(500).json({ error }));
+    .catch(error => res.status(500).json({ status:500,error }));
 };
 
 export {
