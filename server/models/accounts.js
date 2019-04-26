@@ -46,6 +46,12 @@ class AccountModel {
     const findData = await pool.query(accntCheck, [data]);
     return findData;
   }
+
+  static async dormantAccount(data) {
+    const sql = "SELECT * FROM accounts WHERE status=$1";
+    const findData = await pool.query(sql, [data]);
+    return findData;
+  }
 }
 
 export default AccountModel;

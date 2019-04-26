@@ -105,7 +105,7 @@ class UserController {
       }
       const findAcc = await User.findAccountByEmail(find.rows[0].id);
       if (findAcc.rows.length !== 0) {
-        return res.status(200).json({ status: 200, user: find.rows ,account: findAcc.rows});
+        return res.status(200).json({ status: 200, user: find.rows, account: findAcc.rows });
       }
       return res.status(404).json({ status: 404, error: "account not found" });
     } catch (error) {

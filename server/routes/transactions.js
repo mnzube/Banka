@@ -12,5 +12,5 @@ app.post("/:accountNumber/debit", auth.checkAuth, checkType,
 app.post("/:accountNumber/credit", auth.checkAuth, checkType,
   checkAccount, Transaction.credit);
 //view transaction
-app.get("/:transactionId",auth.checkAuth,checkType,Transaction.findTransaction);
+app.get("/:transactionId", auth.checkAuth, checkType, Transaction.findTransaction);
 export default app;
