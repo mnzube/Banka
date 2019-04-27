@@ -93,9 +93,13 @@ Opeoluwa Iyi-Kuyoro
 Stephen Byarugaba
 ```
 ## Deployment
+gh-pages
 ```
 http://mnzube.github.io/Banka
 
+```
+Heroku
+```
 https://aknab.herokuapp.com/
 
 ```
