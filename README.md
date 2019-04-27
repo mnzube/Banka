@@ -94,19 +94,18 @@ Stephen Byarugaba
 ```
 ## Deployment
 gh-pages
-```
+
 http://mnzube.github.io/Banka
 
-```
 Heroku
-```
+
 https://aknab.herokuapp.com/
 
-```
+
 ## API Documentation 
-```
+
 https://aknab.herokuapp.com/api-docs/
-```
+
 
 ## Author
 ```
