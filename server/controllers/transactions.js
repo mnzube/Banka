@@ -19,7 +19,7 @@ class TransactionController {
       .then((trans) => {
         const send = trans.rows[0];
         if (send.length !== 0) {
-          //@update account
+          //update account
           const datas = {
             newbalance: send.newbalance,
             accountNumber: req.params.accountNumber
@@ -57,7 +57,6 @@ class TransactionController {
       newBalance: Number(req.accounts.balance) - req.body.amount,
       oldBalance: req.accounts.balance
     };
-
     Transaction.createDebit(data)
       .then((trans) => {
         const send = trans.rows[0];

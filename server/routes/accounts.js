@@ -3,7 +3,7 @@ import Account from "../controllers/accounts";
 import auth from "../middleware/auth";
 import validation from "../middleware/accounts";
 import { checkAccount } from "../middleware/accountCheck";
-import { checkType } from "../middleware/userss";
+import Validation from "../middleware/users";
 
 const app = express.Router();
 
@@ -17,5 +17,5 @@ app.delete("/accounts/:accountNumber", auth.checkAuth, checkAccount, Account.del
 //@view transaction
 app.get("/accounts/:accountNumber/transactions", auth.checkAuth, checkAccount, Account.getTransactions);
 //account type
-app.get("/accounts/type/account", auth.checkAuth, checkType, Account.getAccountType);
+app.get("/accounts/type/account", auth.checkAuth, Validation.checkType, Account.getAccountType);
 export default app;
