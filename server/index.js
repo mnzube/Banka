@@ -1,10 +1,13 @@
 import express from "express";
+import swaggerUi from "swagger-ui-express";
 import users from "./routes/users";
 import accounts from "./routes/accounts";
 import transactions from "./routes/transactions";
+import swaggerDocument from "../swagger.json";
 
 const app = express();
 
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
