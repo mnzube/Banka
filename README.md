@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/mnzube/Banka.svg?branch=develop)](https://travis-ci.org/mnzube/Banka)
 [![Coverage Status](https://coveralls.io/repos/github/mnzube/Banka/badge.svg)](https://coveralls.io/github/mnzube/Banka)
 [![Maintainability](https://api.codeclimate.com/v1/badges/7c0570b1713671955908/maintainability)](https://codeclimate.com/github/mnzube/Banka/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/7c0570b1713671955908/test_coverage)](https://codeclimate.com/github/mnzube/Banka/test_coverage)
+
 
 
 # Description
@@ -9,25 +9,36 @@
 Banka is a light weight core banking application that powers banking operations
 
 ## Documentation
-| Resource URL | Methods  | Description  |
-| ------- | --- | --- |
-| / | GET | The index (welcome message) |
-| /api/v1/auth/signup | POST | Create a user |
-| /api/v1/auth/signin | POST | Log in a contact |
-| /api/v1/:accountNumber/debit | POST | Debits an account |
-| /api/v1/:accountNumber/credit | POST |Credits an account |
-| /api/v1/accounts | POST | Creates an Account |
-| /api/v1/accounts | GET | Fetches all Accounts |
-| /api/v1/accounts/:id | GET | Fetch a particular Account |
-| /api/v1/accounts/:id | PATCH | Updates status of an account |
-| /api/v1/accounts/:id | DELETE | Deletes a  message |
-
+| Methods         | Endpoints             | Descriptions  |
+| :------------- | :--------------------| :-----|
+| POST          |  /api/v1/auth/signup  |Register a client |
+| POST          |  /api/v1/auth/signin  |Sign in a client |
+| POST          |  /api/v1/accounts     |Create a Bank account|
+| PATCH         |  /api/v1/accounts/:accountNumber |Activate or deactivate a Bank account|
+| DELETE        |  /api/v1/accounts/:accountNumber | Delete a specific Bank account      |
+| POST          |  /api/v1/transactions/:accountNumber/debit |Debit a Bank account       |
+| POST          |  /api/v1/transactions/:accountNumber/credit | Credit a Bank account    |
+| GET           |  /api/v1/accounts/:accountNumber/transactions |View an account’s transaction history|
+| GET           | /api/v1/transactions/:transactionId |View a specific transaction |
+| GET           | /api/v1/user/email/accounts |View all accounts owned by a specific user (client) |
+| GET           | /api/v1/accounts/account-number | View a specific account’s details |
+| GET           | /api/v1/accounts | View a list of all bank accounts |
+| GET           | /api/v1/accounts/type/account/?status=active | View a list of all active bank accounts |
+| GET           | /api/v1/accounts/type/account/?status=dormant | View a list of all dormant bank accounts |
 
 ## Setup
 
-To clone this repo: in your terminal => use git clone https://github.com/mnzube/Banka.git
+Clone the repository into your machine
+git clone https://github.com/mnzube/Banka.git
 
-Switch to develop branch with => git checkout develop
+Install dependencies
+```
+npm install
+
+Start the server
+
+npm run dev
+```
 
 ### Dependencies
 ```
@@ -36,19 +47,67 @@ Switch to develop branch with => git checkout develop
 
 ```
 
-### Getting Started
+### Features
+```
+-A user (client) can sign up
 
-Run npm run dev You should see: "Server started successfully! App Listening on port 3000.
+-A user (client) can login
 
+-A user (client) can create an account
+
+-A user (client) can view account transaction history
+
+-A user (client) can view a specific account transaction
+
+-A staff (cashier) can debit user (client) account
+
+-A staff (cashier) can credit user (client) account
+
+-An admin/staff can view all user accounts
+
+-An admin/staff can view a specific user 
+account
+
+-An admin/staff can activate or deactivate an account
+
+-An admin/staff can delete a specific user account
+
+-An admin can create staff and admin user accounts
+```
 ## Testing
+Clone the repository into your machine
+git clone https://github.com/mnzube/banka.git
 
-Run npm run test to check if tests are passing.
-With Postman, test if all endpoints work (Find a list of endpoint in the table at the top of this page)
+Install dependencies
+```
+npm install
 
-## Contribute
+Run Tests
 
-Any instructions needed to help others contribute to this repository
+npm test
+```
+## Contributors
+```
+Opeoluwa Iyi-Kuyoro
 
+Stephen Byarugaba
+```
 ## Deployment
+gh-pages
 
-Clone this repo: in your terminal => use git clone https://github.com/mnzube/Banka.git
+http://mnzube.github.io/Banka
+
+Heroku
+
+https://aknab.herokuapp.com/
+
+
+## API Documentation 
+
+https://aknab.herokuapp.com/api-docs/
+
+
+## Author
+```
+Michael Nzube
+```

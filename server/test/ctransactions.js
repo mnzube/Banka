@@ -4,13 +4,14 @@ import app from "../index";
 import { login, signup1 } from "../data/users.json";
 import { accounts } from "../data/accounts.json";
 import { debit } from "../data/transactions.json";
+import pool from "../config/database";
 
 chai.use(chaiHttp);
 chai.should();
 let token;
 let accountNumber;
 let token2;
-
+let transactionId;
 describe("Transaction", () => {
   before("let staff login", (done) => {
     chai.request(app)
@@ -24,6 +25,14 @@ describe("Transaction", () => {
         token = `Bearer ${res.body.token}`;
         done();
       });
+    const sql = "DELETE FROM users WHERE email=$1";
+    pool.query(sql, [signup1.email])
+      .then(() => {
+        console.log("..");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   });
   //
   it("should first create account", (done) => {
@@ -36,7 +45,7 @@ describe("Transaction", () => {
         if (error) {
           done(error);
         }
-        accountNumber = res.body.data.accountNumber;
+        accountNumber = res.body.account.accountnumber;
         done();
       });
   });
@@ -52,7 +61,7 @@ describe("Transaction", () => {
         }
         res.should.have.status(400);
         res.body.should.have.property("status");
-        res.body.should.have.property("error");
+        res.body.should.have.property("message");
         done();
       });
   });
@@ -84,7 +93,6 @@ describe("Transaction", () => {
         }
         res.should.have.status(404);
         res.body.should.have.property("status");
-        res.body.should.have.property("error");
         done();
       });
   });
@@ -125,9 +133,8 @@ describe("Transaction", () => {
         if (error) {
           done(error);
         }
-        res.should.have.status(400);
+        res.should.have.status(409);
         res.body.should.have.property("status");
-        res.body.should.have.property("error");
         done();
       });
   });
@@ -144,7 +151,6 @@ describe("Transaction", () => {
         }
         res.should.have.status(404);
         res.body.should.have.property("status");
-        res.body.should.have.property("error");
         done();
       });
   });
@@ -158,30 +164,15 @@ describe("Transaction", () => {
         if (error) {
           done(error);
         }
+        transactionId = res.body.Transaction.transaction_id;
         res.should.have.status(201);
         res.body.should.have.property("status");
         res.body.should.have.property("message");
         done();
       });
   });
-  //
-  it("should return status code of 201 when doing a credit transaction", (done) => {
-    chai.request(app)
-      .post(`/api/v1/transaction/${accountNumber}/credit`)
-      .set("Content-Type", "application/json")
-      .set("Authorization", token)
-      .send(debit)
-      .end((error, res) => {
-        if (error) {
-          done(error);
-        }
-        res.should.have.status(201);
-        res.body.should.have.property("status");
-        res.body.should.have.property("message");
-        done();
-      });
-  });
-  it("should bring unauthorized access and status 0f 400 on credit transaction", (done) => {
+  ////
+  it("should bring unauthorized access and status 0f 409 on credit transaction", (done) => {
     chai.request(app)
       .post(`/api/v1/transaction/${accountNumber}/credit`)
       .set("Content-Type", "application/json")
@@ -191,9 +182,9 @@ describe("Transaction", () => {
         if (error) {
           done(error);
         }
-        res.should.have.status(400);
+        res.should.have.status(409);
         res.body.should.have.property("status");
-        res.body.should.have.property("error");
+        res.body.should.have.property("message");
         done();
       });
   });
@@ -224,7 +215,35 @@ describe("Transaction", () => {
           done(error);
         }
         res.should.have.status(400);
-        res.body.should.have.property("message");
+        done();
+      });
+  });
+
+  //@get account transactions
+  it("should return status code of 200 GET account transaction", (done) => {
+    chai.request(app)
+      .get(`/api/v1/accounts/${accountNumber}/transactions`)
+      .set("Content-Type", "application/json")
+      .set("Authorization", token)
+      .end((error, res) => {
+        if (error) {
+          done(error);
+        }
+        res.should.have.status(200);
+        done();
+      });
+  });
+  //@gettransaction
+  it("should return status code of 200 GET transaction by id", (done) => {
+    chai.request(app)
+      .get(`/api/v1/transaction/${transactionId}`)
+      .set("Content-Type", "application/json")
+      .set("Authorization", token)
+      .end((error, res) => {
+        if (error) {
+          done(error);
+        }
+        res.should.have.status(200);
         done();
       });
   });

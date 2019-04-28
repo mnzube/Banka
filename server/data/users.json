@@ -1,15 +1,16 @@
 {
     "signup":{
-        "firstName":"michael",
-        "lastName":"nzube",
-        "email":"nzube@gmail.com",
+        "firstName":"test",
+        "lastName":"tests",
+        "email":"test@gmail.com",
         "password":"123456",
+        "type":"cashier",
         "isAdmin":true
     },
     "signup1":{
-        "firstName":"michael",
+        "firstName":"test1",
         "lastName":"nzube",
-        "email":"nzube@gmail.com",
+        "email":"test1@gmail.com",
         "password":"123456",
         "isAdmin":false
     },
@@ -20,11 +21,11 @@
         "password":""
     },
     "login":{
-        "email":"nzube@gmail.com",
+        "email":"test@gmail.com",
         "password":"123456"
     },
     "passwordError":{
-        "email":"nzube@gmail.com",
+        "email":"test@gmail.com",
         "password":"yesdsld"
     },
     "loginError":{

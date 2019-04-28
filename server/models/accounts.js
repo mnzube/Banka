@@ -1,58 +1,57 @@
-import uuid from "uuid";
+import dotenv from "dotenv";
+import pool from "../config/database";
 
-class Account {
-  constructor() {
-    this.accounts = [];
+dotenv.config();
+
+class AccountModel {
+  static async create(newAccount) {
+    const createAccnt = "INSERT INTO accounts(type,balance,accountnumber,owner,status) VALUES($1,$2,$3,$4,$5) returning *";
+    const account = await pool.query(createAccnt, [newAccount.type, newAccount.balance,
+      newAccount.accountNumber, newAccount.owner, newAccount.status]);
+    return account;
   }
 
-  //creates an account
-  create(data, userId) {
-    const newAccount = {
-      id: uuid.v4(),
-      accountNumber: `${new Date().getFullYear()}-${Math.random()}`,
-      owner: userId,
-      type: data.type,
-      balance: data.balance,
-      status: "dormant",
-      createdOn: new Date()
-
-    };
-    this.accounts.push(newAccount);
-    return newAccount;
+  static async getOne(data) {
+    const getAccnt = "SELECT * FROM accounts WHERE accountnumber=$1 AND owner=$2";
+    const get = await pool.query(getAccnt, [data.accountNumber, data.userId]);
+    return get;
   }
 
-  //@finds one account
-  findOne(accountNumber) {
-    return this.accounts.find(account => account.accountNumber === accountNumber);
+  static async findAll() {
+    const getAllAccnts = "SELECT * FROM accounts";
+    const all = await pool.query(getAllAccnts);
+    return all;
   }
 
-  //@finds all accounts
-  findAll() {
-    return this.accounts;
+  static async update(data) {
+    const sql = "UPDATE accounts SET status=$1 WHERE accountnumber=$2 returning*";
+    const updateData = await pool.query(sql, [data.status, data.accountNumber]);
+    return updateData;
   }
 
-  ////@Account status
-  update(id, data) {
-    const account = this.findOne(id);
-    const index = this.accounts.indexOf(account);
-    this.accounts[index].status = data;
-    return this.accounts[index];
+  static async findAccountTransaction(data) {
+    const sql = "SELECT * FROM transactions WHERE accountnumber=$1";
+    const findAccount = await pool.query(sql, [data]);
+    return findAccount;
   }
 
-  //@deletes an account
-  delete(id) {
-    const account = this.findOne(id);
-    const index = this.accounts.indexOf(account);
-    const deleted = this.accounts.splice(index, 1);
-    return deleted;
+  static async destroy(data) {
+    const deleteAccnt = "DELETE FROM accounts WHERE accountnumber=$1 AND owner=$2 returning *";
+    const deleteData = await pool.query(deleteAccnt, [data.accountNumber, data.userId]);
+    return deleteData;
   }
 
-  updateAccountBalance(data) {
-    const account = this.findOne(data.accountNumber);
-    const index = this.accounts.indexOf(account);
-    const update = this.accounts[index].balance = data.balance;
-    return update;
+  static async getAccount(data) {
+    const accntCheck = "SELECT * FROM accounts WHERE accountnumber=$1";
+    const findData = await pool.query(accntCheck, [data]);
+    return findData;
+  }
+
+  static async dormantAccount(data) {
+    const sql = "SELECT * FROM accounts WHERE status=$1";
+    const findData = await pool.query(sql, [data]);
+    return findData;
   }
 }
 
-export default new Account();
+export default AccountModel;

@@ -4,10 +4,12 @@
   "description": "The light weight core banking application that powers banking operations",
   "main": "index.js",
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text --timeout=1500 mocha --require @babel/register server/test/* --exit",
-    "start": "node --require @babel/register ./server/index.js",
-    "dev": "nodemon --require @babel/register ./server/index.js",
-    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
+    "test": "nyc --reporter=html --reporter=text --timeout=1500 mocha --require @babel/register  --require @babel/polyfill server/test/* --exit",
+    "start": "node --require @babel/register --require @babel/polyfill ./server/index.js",
+    "dev": "nodemon --require @babel/register --require @babel/polyfill ./server/index.js",
+    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
+    "create": "node --require @babel/register server/db/db createTable --exit",
+    "drop": "node --require @babel/register server/db/db dropTable --exit"
   },
   "repository": {
     "type": "git",
@@ -21,6 +23,7 @@
   "homepage": "https://github.com/mnzube/Banka#readme",
   "dependencies": {
     "@babel/core": "^7.4.3",
+    "@babel/polyfill": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
     "@babel/register": "^7.4.0",
     "bcryptjs": "^2.4.3",
@@ -29,7 +32,10 @@
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
     "jsonwebtoken": "^8.5.0",
+    "make-runnable": "^1.3.6",
     "nodemon": "^1.18.10",
+    "pg": "^7.10.0",
+    "swagger-ui-express": "^4.0.2",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
@@ -39,7 +45,7 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
-    "mocha": "^6.1.3",
+    "mocha": "^6.1.4",
     "nyc": "^13.3.0"
   }
 }

@@ -2,7 +2,7 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="./ui/css/banka.css">
-<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Nunito|Roboto" rel="stylesheet">
 <link rel="icon" type="image/ico" href="./ui/images/bitcoinp.png"/>
   <title>BANKA</title>
   
@@ -19,12 +19,13 @@
 						<h4><a href="./ui/html/cashier.html">Welcome to Banka</a></h4>	
 						<h5>Online Banking with Banka is simple, straight-forward and secure, and lets you do all the things you need to do to manage your money online. Manage your personal accounts easily with Banka by signing in.</h5>  	
 						 </div>
+						
 	  		<div class="form">
 	  			<form class="login-form">
 						<h5><a href="./ui/html/client.html">Sign in to Banka</a></h5>
-					<input type="text" placeholder="Username"/>
+					<input type="email" placeholder="Email"/>
 					<input type="password" placeholder="Password"/>
-					<button><a href="./ui/html/admin.html">Sign In</a></button>
+					<button value='Sign In' onclick="get_action(this);" ><a href="./ui/html/admin.html">Sign In</a></button>
 					<p class="message">Not Registered?<a href="./ui/html/signup.html"> Sign Up</a></p>
 					<p class="message"><a href="./ui/html/password.html"> Forgot Password?</a></p>
 	  			</form>
@@ -37,6 +38,11 @@
 	  <li>Banka &copy; 2019</li>
 	  <li class="right"><a href="./privacy.html">Privacy Policy</a></li>
 	  </footer>
+	  <script type="text/javascript">
+		function get_action(form) {
+		form.action = document.querySelector('input[name = "AccountType"]:checked').value;
+	}
+	</script>
 	</body>
 </html>
 
