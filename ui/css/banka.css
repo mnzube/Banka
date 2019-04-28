@@ -5,19 +5,31 @@ body{
     background-size:cover;
     background-position: center;
     line-height: 1.5;
-    overflow:hidden;
+    /* overflow:hidden; */
 }
 .btnChange{
     background: none!important;
     font-size: 0.67em!important;
 }
-@media only screen and (max-width: 300px){
-    .main-nav{
-        font-size:0.1em;
-        padding:0; 
+@media only screen and (max-width: 350px){
+    .container.zone.red{
+        height:600px;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        min-height: 140px;
+        height: auto;
     }
-    .zone{
-        font-size:0.8em;
+
+    .welcome {
+        margin:0px;
+        padding:0px;    
+    }
+    .form {
+        margin:0px;
+        padding:0px;
     }
 }
 .zone {
@@ -52,24 +64,36 @@ a{
     text-decoration: none;
 }
 /*COVER*/
-.container{
+   .radio_button {
+    color: gold;
+    text-align: center;
+    font-size: 0.7rem;
     display: flex;
-    /* flex-direction:row; */
+    padding-top: 20px;
+    padding-right: 40px;
+
+  }
+  
+.container.zone.red{
+    display: flex;
+    flex-direction:row;
     flex-wrap:wrap;
     align-items:center;
     justify-content:center;
+   
     
 }
 .form{
     position:relative;
     z-index: 1;
     background-color:rgba(68, 50, 78, 0.5);
-    max-width: 360px;
-    margin: 0 auto 100px;
+    max-width: 350px;
+    /* margin: 0 10px 0px; */
     padding: 35px;
     text-align: center;
-    float:right;    
+    border-radius: 15px 50px;
 }
+
 .forms{
     position:relative;
     z-index: 1;
@@ -79,16 +103,16 @@ a{
     padding: 30px;
     text-align: center;
     float:center;
+    border-radius: 15px 50px;
 }
 .welcome{
     position:relative;
     z-index: 1;
-    max-width: 400px;
+    max-width: 350px;
     padding: 1em;
     text-align: justify;
-    float:left;
-    padding-bottom:220px;
-    margin-left:20px;
+    padding-bottom:100px; 
+    /* margin-right:120px; */
 }
 .forms input{
     font-family: "Roboto", sans-serif;
@@ -158,6 +182,7 @@ a{
     padding: 15px;
     box-sizing: border-box;
     font-size: 14px;
+    border-radius: 10px ;
 }
 .form textarea{
    font-family: "Roboto", sans-serif;
@@ -171,6 +196,19 @@ a{
     font-size: 14px;
 }
  .form button {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background-color:purple;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #ffffff;
+    font-size: 14px;
+    border-radius: 10px ;
+    cursor: pointer;
+ }
+ #button{
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     outline: 0;
@@ -201,7 +239,7 @@ a{
     display: none;
 }
 .form h5 {
-    margin:30px;
+    margin:10px;
 }
 .formz{
     position:relative;
@@ -212,6 +250,7 @@ a{
     padding: 30px;
     text-align: center;
     float:left;  
+    border-radius: 15px 50px;
 }
 
 .formz input{
@@ -280,7 +319,8 @@ a{
     margin: 0 auto 100px;
     padding: 30px;
     text-align: center;
-    float:right;  
+    float:right; 
+    border-radius: 15px 50px; 
 }
 
 .formy input{
@@ -345,17 +385,14 @@ a{
   display: block;
   font-weight: bold;
   font-family:'roboto';
-  margin-block-start: 1em;
-  margin-block-end: 1em;
   color:gold;
+  
 }
 .welcome h5{
   display: block;
   font-size:21px;
   font-weight: 300;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
   color: white;
 }
 .main-content{
@@ -370,10 +407,8 @@ table {
    width: 95%;
    background-color: rgba(68, 50, 78, 0.5);
    overflow-x:auto;
-   overflow-y:auto;  
-}
-.tabl{
-    
+   overflow-y:auto; 
+   border-radius: 25px 50px; 
 }
 th, td {
     padding: 10px;
@@ -387,12 +422,18 @@ td {
 }
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 300px;
-    margin: auto;
-    text-align: center;
+    width: 70%;
+    
+  }
+  fieldset{
+      width:300px;
+      display:flex;
+   
+
   }
 fieldset p {
-    font-size: 20px;
+    font-size:0.5em;
+
 }
  .container .nav{
     width: 20%;
@@ -507,16 +548,21 @@ height: 5vh;
     left:0;
     position:absolute;
     top:3;
+    border-radius: 15px 50px;
+
+
   }
   
   /* The navigation menu links */
   .sidenav a {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
-    font-size: 27px;
+    font-size: 25px;
     color:gold;
     display: block;
     line-height: 3;
+    font-family:  "Nunito", sans-serif;
+    
   }
   
   /* When you mouse over the navigation links, change their color */
